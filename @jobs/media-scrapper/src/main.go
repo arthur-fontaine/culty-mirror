@@ -44,7 +44,7 @@ func main() {
 
 	collection := typesense.GenericCollection[*mediadb.Media](typesenseClient, env.TYPESENSE_MEDIA_COLLECTION_NAME)
 
-	for media := range utils.MergeChan(scrappers.ScrapTMDB(env, 0)) {
+	for media := range utils.MergeChan(scrappers.ScrapTMDB(env, collection)) {
 		collection.Documents().Create(context.Background(), media)
 	}
 }
@@ -78,6 +78,7 @@ func getTypesenseMediaSchema(env utils.Env) typesenseApi.CollectionSchema {
 			{
 				Name: "sourceId",
 				Type: "string",
+				Sort: typesensePointer.True(),
 			},
 		},
 		DefaultSortingField: typesensePointer.String("releaseDate"),

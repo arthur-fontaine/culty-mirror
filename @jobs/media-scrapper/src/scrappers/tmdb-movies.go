@@ -1,7 +1,9 @@
 package scrappers
 
 import (
+	"context"
 	"fmt"
+	"strconv"
 	"time"
 
 	"github.com/arthur-fontaine/culty/jobs/media-scrapper/node_modules/culty-media-db/types/go/mediadb"
@@ -9,10 +11,18 @@ import (
 
 	tmdb "github.com/cyruzin/golang-tmdb"
 	"github.com/google/uuid"
+	"github.com/typesense/typesense-go/v2/typesense"
+	typesenseApi "github.com/typesense/typesense-go/v2/typesense/api"
+	typesensePointer "github.com/typesense/typesense-go/v2/typesense/api/pointer"
 )
 
-func ScrapTMDB(env utils.Env, minimumId int) chan mediadb.Media {
+func ScrapTMDB(
+	env utils.Env,
+	mediaCollection typesense.CollectionInterface[*mediadb.Media],
+) chan mediadb.Media {
 	medias := make(chan mediadb.Media)
+
+	minimumId := getLastIdSaved(mediaCollection)
 
 	tmdbClient, err := tmdb.Init(env.TMDB_API_KEY)
 	if err != nil {
@@ -65,4 +75,31 @@ func calculateReleaseDate(releaseDate string) (int, error) {
 
 	// Return the number of hours since 1970 01 01
 	return int(t.Unix() / 3600), nil
+}
+
+func getLastIdSaved(mediaCollection typesense.CollectionInterface[*mediadb.Media]) int {
+	lastTMDBDocument, err := mediaCollection.Documents().Search(context.Background(), &typesenseApi.SearchCollectionParams{
+		Q:       typesensePointer.String("tmdb"),
+		QueryBy: typesensePointer.String("source"),
+		SortBy:  typesensePointer.String("sourceId:desc"),
+		Limit:   typesensePointer.Int(1),
+	})
+
+	if err != nil {
+		fmt.Println(err)
+		return 0
+	}
+
+	if *lastTMDBDocument.Found > 0 {
+		lastId, err := strconv.Atoi((*(*lastTMDBDocument.Hits)[0].Document)["sourceId"].(string))
+
+		if err != nil {
+			fmt.Println(err)
+			return 0
+		}
+
+		return lastId
+	}
+
+	return 0
 }
