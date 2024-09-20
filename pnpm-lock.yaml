@@ -11,6 +11,9 @@ importers:
       '@biomejs/biome':
         specifier: 1.9.2
         version: 1.9.2
+      mkdirp:
+        specifier: ^3.0.1
+        version: 3.0.1
       turbo:
         specifier: ^2.1.2
         version: 2.1.2
@@ -23,6 +26,8 @@ importers:
       '@tsconfig/strictest':
         specifier: ^2.0.5
         version: 2.0.5
+
+  '@services/media-db': {}
 
 packages:
 
@@ -81,6 +86,11 @@ packages:
 
   '@tsconfig/strictest@2.0.5':
     resolution: {integrity: sha512-ec4tjL2Rr0pkZ5hww65c+EEPYwxOi4Ryv+0MtjeaSQRJyq322Q27eOQiFbuNgw2hpL4hB1/W/HBGk3VKS43osg==}
+
+  mkdirp@3.0.1:
+    resolution: {integrity: sha512-+NsyUUAZDmo6YVHzL/stxSu3t9YS1iljliy3BSDrXJ/dkn1KYdmtZODGGjLcc9XLgVVpH4KshHB8XmZgMhaBXg==}
+    engines: {node: '>=10'}
+    hasBin: true
 
   turbo-darwin-64@2.1.2:
     resolution: {integrity: sha512-3TEBxHWh99h2yIzkuIigMEOXt/ItYQp0aPiJjPd1xN4oDcsKK5AxiFKPH9pdtfIBzYsY59kQhZiFj0ELnSP7Bw==}
@@ -159,6 +169,8 @@ snapshots:
     optional: true
 
   '@tsconfig/strictest@2.0.5': {}
+
+  mkdirp@3.0.1: {}
 
   turbo-darwin-64@2.1.2:
     optional: true

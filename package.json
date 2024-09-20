@@ -10,6 +10,7 @@
   "author": "",
   "devDependencies": {
     "@biomejs/biome": "1.9.2",
+    "mkdirp": "^3.0.1",
     "turbo": "^2.1.2",
     "typescript": "^5.6.2"
   },
