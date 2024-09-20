@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/arthur-fontaine/culty/jobs/media-scrapper/node_modules/culty-media-db/types/go/mediadb"
+	"github.com/arthur-fontaine/culty/jobs/media-scrapper/src/scrappers"
 	"github.com/arthur-fontaine/culty/jobs/media-scrapper/src/utils"
 
 	"github.com/typesense/typesense-go/v2/typesense"
@@ -43,15 +44,9 @@ func main() {
 
 	collection := typesense.GenericCollection[*mediadb.Media](typesenseClient, env.TYPESENSE_MEDIA_COLLECTION_NAME)
 
-	collection.Documents().Create(context.Background(), mediadb.Media{
-		Id:          "1",
-		Type:        mediadb.New_MediaType(mediadb.MediaType_MOVIE),
-		Title:       "Video Title",
-		Description: "Video Description",
-		ReleaseDate: 19986,
-		Source:      "youtube",
-		SourceId:    "123456",
-	})
+	for media := range utils.MergeChan(scrappers.ScrapTMDB(env, 0)) {
+		collection.Documents().Create(context.Background(), media)
+	}
 }
 
 func getTypesenseMediaSchema(env utils.Env) typesenseApi.CollectionSchema {
