@@ -1,0 +1,17 @@
+{
+  "name": "culty",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "turbo dev"
+  },
+  "keywords": [],
+  "author": "",
+  "devDependencies": {
+    "@biomejs/biome": "1.9.2",
+    "turbo": "^2.1.2",
+    "typescript": "^5.6.2"
+  },
+  "packageManager": "pnpm@9.7.0"
+}

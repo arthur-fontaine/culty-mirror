@@ -1,0 +1,10 @@
+{
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    ".env": "*.env, .env.*, .envrc, env.d.ts",
+    ".gitignore": ".gitattributes, .gitmodules, .gitmessage, .mailmap, .git-blame*",
+    "package.json": "*rc, pnpm-lock.yaml, pnpm-workspace.yaml, turbo.json, *.config.js, *.config.ts, biome.json*"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

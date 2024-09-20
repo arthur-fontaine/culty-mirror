@@ -1,0 +1,77 @@
+#!/bin/sh
+
+RED=$(tput setaf 1)
+BLUE=$(tput setaf 4)
+RESET=$(tput sgr0)
+
+if ! command -v curl &> /dev/null
+then
+    echo "${RED}curl${RESET} could not be found, please install it and re-run this script"
+    exit
+fi
+
+if ! command -v direnv &> /dev/null
+then
+    echo "${RED}direnv${RESET} could not be found, please install it and re-run this script"
+    exit
+fi
+
+if ! command -v pkgx &> /dev/null
+then
+    echo "${BLUE}pkgx${RESET} could not be found, installing..."
+    curl -Ssf https://pkgx.sh | sh
+fi
+
+if [ -z "$DIRENV_ALLOWED_IN" ] || [ "$DIRENV_ALLOWED_IN" != "$PWD" ]; then
+    echo "Please run ${BLUE}direnv allow .${RESET} to allow this ${BLUE}.envrc${RESET} file and re-run this script"
+    exit
+fi
+
+pkgx install go
+pkgx install node
+pkgx install npx
+pkgx install pnpm
+
+# $1: package name, $2:package identifier (default: com/palantir/conjure)
+install_conjure() {
+    local function_name=${FUNCNAME[0]}
+    local name=$1
+    if command -v $name &> /dev/null; then
+        if ! command $name 2>/dev/null | grep -q "ImageMagick"; then
+            echo "$function_name: already installed: ${BLUE}$name${RESET}"
+            return 0
+        fi
+    fi
+    local identifier=${2:-com/palantir/conjure}
+    local url="https://repo1.maven.org/maven2/$identifier/$name"
+    local version=$(curl -sL $url | grep -o 'href="[0-9]\+\.[0-9]\+\.[0-9]\+/' | sed 's/href="//; s/\///' | sort -V | tail -n 1)
+    local os=$(uname -s | tr '[:upper:]' '[:lower:]')
+    local arch=$(uname -m | sed 's/x86_64/amd64/')
+    local files_to_try=("$name-$version-$os-$arch.tgz" "$name-$version.tgz")
+    if [ "$os" = "darwin" ] && [ "$arch" = "arm64" ]; then
+        files_to_try+=("$name-$version-darwin-amd64.tgz")
+    fi
+    local file=""
+    for f in ${files_to_try[@]}; do
+        if curl -sL "$url/$version/$f" -o /dev/null -w "%{http_code}" | grep -q 200; then
+            file=$f
+            break
+        fi
+    done
+    if [ -z "$file" ]; then
+        echo "Could not find a suitable ${BLUE}$name${RESET} version to download"
+        return 1
+    fi
+    mkdir -p bin
+    curl -sL "$url/$version/$file" | tar -xz -C bin
+    if [ -f "bin/$name-$version/bin/$name" ]; then
+        mkdir -p "bin/.conjure"
+        mv "bin/$name-$version" "bin/.conjure/$name-$version"
+        ln -s ".conjure/$name-$version/bin/$name" "bin/$name"
+    fi
+    echo "$function_name: installed: ${BLUE}$name${RESET}"
+}
+
+install_conjure conjure
+install_conjure conjure-go
+install_conjure conjure-typescript com/palantir/conjure/typescript
