@@ -1,1 +1,4 @@
 typesense-data/
+.conjure/
+# types/ are generated
+types/

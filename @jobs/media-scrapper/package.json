@@ -1,0 +1,11 @@
+{
+  "name": "@culty/media-scrapper",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "go run src/main.go",
+    "dev": "pnpm start"
+  },
+  "dependencies": {
+    "culty-media-db": "workspace:@culty/media-db@*"
+  }
+}

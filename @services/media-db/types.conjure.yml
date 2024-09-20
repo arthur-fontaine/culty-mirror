@@ -1,0 +1,17 @@
+types:
+  definitions:
+    default-package: mediadb
+
+    objects:
+      Media:
+        fields:
+          id: string
+          type: MediaType
+          title: string
+          description: string
+          releaseDate: integer
+          source: string
+          sourceId: string
+      MediaType:
+        values:
+          - MOVIE
