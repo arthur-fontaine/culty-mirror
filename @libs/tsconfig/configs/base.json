@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@tsconfig/strictest",
   "compilerOptions": {
-    "module": "NodeNext",
+    "module": "ESNext",
     "moduleDetection": "force",
     "moduleResolution": "Bundler",
     "resolveJsonModule": true,

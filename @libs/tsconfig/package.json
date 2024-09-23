@@ -2,11 +2,9 @@
   "name": "@culty/tsconfig",
   "version": "0.0.0",
   "private": true,
-  "exports": {
-    ".": {
-      "import": "./configs/base.json"
-    }
-  },
+  "files": [
+    "configs/base.json"
+  ],
   "devDependencies": {
     "@tsconfig/strictest": "^2.0.5"
   }
