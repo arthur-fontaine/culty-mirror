@@ -1,4 +1,4 @@
-package utils
+package typesenseutils
 
 import (
 	"context"

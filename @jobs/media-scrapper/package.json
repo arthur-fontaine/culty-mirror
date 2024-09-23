@@ -6,6 +6,7 @@
     "dev": "pnpm start"
   },
   "dependencies": {
-    "culty-media-db": "workspace:@culty/media-db@*"
+    "culty-media-db": "workspace:@culty/media-db@*",
+    "culty-go-utils": "workspace:@culty/go-utils@*"
   }
 }

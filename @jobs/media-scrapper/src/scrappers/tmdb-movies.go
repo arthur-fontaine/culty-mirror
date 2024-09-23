@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/arthur-fontaine/culty/jobs/media-scrapper/node_modules/culty-media-db/types/go/mediadb"
-	"github.com/arthur-fontaine/culty/jobs/media-scrapper/src/utils"
+	utils "github.com/arthur-fontaine/culty/libs/go-utils/src"
+	mediadb "github.com/arthur-fontaine/culty/services/media-db/types/go/mediadb"
 
 	tmdb "github.com/cyruzin/golang-tmdb"
 	"github.com/google/uuid"

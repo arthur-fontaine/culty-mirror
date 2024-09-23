@@ -4,9 +4,10 @@ import (
 	"context"
 	"time"
 
-	"github.com/arthur-fontaine/culty/jobs/media-scrapper/node_modules/culty-media-db/types/go/mediadb"
 	"github.com/arthur-fontaine/culty/jobs/media-scrapper/src/scrappers"
-	"github.com/arthur-fontaine/culty/jobs/media-scrapper/src/utils"
+	utils "github.com/arthur-fontaine/culty/libs/go-utils/src"
+	typesenseutils "github.com/arthur-fontaine/culty/services/media-db/src"
+	mediadb "github.com/arthur-fontaine/culty/services/media-db/types/go/mediadb"
 
 	"github.com/typesense/typesense-go/v2/typesense"
 	typesenseApi "github.com/typesense/typesense-go/v2/typesense/api"
@@ -25,7 +26,7 @@ type Media struct {
 
 func main() {
 	env := utils.GetEnv()
-	typesenseClient := utils.GetTypesenseClient(env)
+	typesenseClient := typesenseutils.GetTypesenseClient(env)
 
 	for {
 		typesenseIsUp, _ := typesenseClient.Health(context.Background(), 10*time.Second)
@@ -36,7 +37,7 @@ func main() {
 	}
 
 	collectionSchema := getTypesenseMediaSchema(env)
-	_, err := utils.UpsertTypesenseCollection(typesenseClient, collectionSchema)
+	_, err := typesenseutils.UpsertTypesenseCollection(typesenseClient, collectionSchema)
 
 	if err != nil {
 		panic(err)

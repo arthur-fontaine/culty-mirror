@@ -1,0 +1,28 @@
+types:
+  definitions:
+    default-package: com.culty.services.search
+
+    objects:
+      SearchRequest:
+        fields:
+          query: string
+      
+      SearchResponse:
+        fields:
+          results: list<SearchResult>
+
+      SearchResult:
+        fields:
+          resultId: string
+          score: double
+
+services:
+  SearchService:
+    name: SearchService
+    package: com.culty.services.search
+    endpoints:
+      search:
+        http: POST /search
+        args:
+          request: SearchRequest
+        returns: SearchResponse
