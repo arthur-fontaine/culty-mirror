@@ -14,6 +14,7 @@ types:
       SearchResult:
         fields:
           resultId: string
+          title: string
           score: double
 
 services:

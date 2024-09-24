@@ -18,7 +18,7 @@ export const SearchPage = () => {
     {data && (
       <View>
         {data.results.map((post) => (
-          <Text key={post.resultId}>{post.resultId}</Text>
+          <Text key={post.resultId}>{post.title}</Text>
         ))}
       </View>
     )}

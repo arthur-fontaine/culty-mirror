@@ -35,9 +35,11 @@ func (s *SearchService) Search(ctx context.Context, requestArg search.SearchRequ
 		Results: lo.Map(
 			*results.Hits,
 			func(result typesenseApi.SearchResultHit, _ int) search.SearchResult {
+				document := *result.Document
 				return search.SearchResult{
-					ResultId: (*result.Document)["id"].(string),
+					ResultId: document["id"].(string),
 					Score:    0, // TODO
+					Title:    document["title"].(string),
 				}
 			},
 		),
