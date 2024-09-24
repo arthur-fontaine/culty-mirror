@@ -7,9 +7,19 @@ import Animated, {
   withSequence,
 } from 'react-native-reanimated';
 
-import { ThemedText } from '@/components/ThemedText';
+import { ThemedText } from '../components/ThemedText';
+import { createRoute } from 'agrume';
+import { useEffect } from 'react';
+
+const hello = createRoute(async () => {
+  return 'Hello, worl!';
+})
 
 export function HelloWave() {
+  useEffect(() => {
+    hello().then(console.log);
+  }, []);
+
   const rotationAnimation = useSharedValue(0);
 
   rotationAnimation.value = withRepeat(
