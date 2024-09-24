@@ -88,6 +88,9 @@ importers:
       react-native-screens:
         specifier: 3.31.1
         version: 3.31.1(react-native@0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
+      react-native-unistyles:
+        specifier: ^2.9.2
+        version: 2.9.2(@react-native/normalize-colors@0.74.87)(react-native-web@0.19.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-native@0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
       react-native-web:
         specifier: ~0.19.10
         version: 0.19.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -6311,6 +6314,24 @@ packages:
       react: '*'
       react-native: '*'
 
+  react-native-unistyles@2.9.2:
+    resolution: {integrity: sha512-eAK4akGbQj/5rd6co+XhPp817mX8MXvzHEkqs/nLP8jn+KvY4Z1V6ef0OJ9wUtn9YY/yiRuL1h7wvqP/RocV4A==}
+    engines: {node: '>= 18.0.0'}
+    peerDependencies:
+      '@react-native/normalize-colors': '*'
+      react: '*'
+      react-native: '*'
+      react-native-macos: '*'
+      react-native-web: '*'
+      react-native-windows: '*'
+    peerDependenciesMeta:
+      react-native-macos:
+        optional: true
+      react-native-web:
+        optional: true
+      react-native-windows:
+        optional: true
+
   react-native-web@0.19.12:
     resolution: {integrity: sha512-o2T0oztoVDQjztt4YksO9S1XRjoH/AqcSvifgWLrPJgGVbMWsfhILgl6lfUdEamVZzZSVV/2gqDVMAk/qq7mZw==}
     peerDependencies:
@@ -9759,8 +9780,6 @@ snapshots:
       putout: 36.6.0(eslint@9.11.1(jiti@1.21.6))(typescript@5.3.3)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
-    transitivePeerDependencies:
-      - supports-color
 
   '@putout/engine-parser@10.8.0':
     dependencies:
@@ -9781,8 +9800,6 @@ snapshots:
       picomatch: 4.0.2
       putout: 36.6.0(eslint@9.11.1(jiti@1.21.6))(typescript@5.3.3)
       try-to-catch: 3.0.1
-    transitivePeerDependencies:
-      - supports-color
 
   '@putout/engine-reporter@2.0.0(putout@36.6.0(eslint@9.11.1(jiti@1.21.6))(typescript@5.3.3))':
     dependencies:
@@ -9793,8 +9810,6 @@ snapshots:
       putout: 36.6.0(eslint@9.11.1(jiti@1.21.6))(typescript@5.3.3)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
-    transitivePeerDependencies:
-      - supports-color
 
   '@putout/engine-runner@21.2.0(putout@36.6.0(eslint@9.11.1(jiti@1.21.6))(typescript@5.3.3))':
     dependencies:
@@ -15348,6 +15363,14 @@ snapshots:
       react-freeze: 1.0.4(react@18.2.0)
       react-native: 0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0)
       warn-once: 0.1.1
+
+  react-native-unistyles@2.9.2(@react-native/normalize-colors@0.74.87)(react-native-web@0.19.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-native@0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0):
+    dependencies:
+      '@react-native/normalize-colors': 0.74.87
+      react: 18.2.0
+      react-native: 0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0)
+    optionalDependencies:
+      react-native-web: 0.19.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 
   react-native-web@0.19.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:

@@ -4,7 +4,14 @@
   "explorer.fileNesting.patterns": {
     ".env": "*.env, .env.*, .envrc, env.d.ts",
     ".gitignore": ".gitattributes, .gitmodules, .gitmessage, .mailmap, .git-blame*",
-    "package.json": "*rc, pnpm-lock.yaml, pnpm-workspace.yaml, turbo.json, *.config.js, *.config.ts, biome.json*"
+    "package.json": "*rc, pnpm-lock.yaml, pnpm-workspace.yaml, turbo.json, *.config.js, *.config.ts, biome.json*, go.mod, go.sum",
+    "*.ts": "$(capture).d.ts"
   },
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "quickfix.biome": "explicit",
+    "source.organizeImports.biome": "explicit"
+  }
 }
