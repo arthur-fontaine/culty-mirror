@@ -166,6 +166,9 @@ importers:
 
   '@libs/services':
     dependencies:
+      '@culty/search-service':
+        specifier: workspace:*
+        version: link:../../@services/search-service
       '@culty/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
@@ -173,9 +176,6 @@ importers:
         specifier: ^2.11.0
         version: 2.11.0
     devDependencies:
-      '@culty/search-service':
-        specifier: workspace:*
-        version: link:../../@services/search-service
       vite:
         specifier: ^5.4.7
         version: 5.4.7(@types/node@22.6.0)(terser@5.33.0)

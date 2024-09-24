@@ -2,10 +2,10 @@
   "name": "@culty/media-db",
   "version": "0.0.0",
   "scripts": {
+    "build": "sh ./scripts/generate.sh",
     "dev": "pnpm start",
     "prestart": "mkdirp $TYPESENSE_DATA_DIR",
     "start:typesense": "sh ./scripts/start.sh",
-    "start:conjure": "sh ./scripts/generate.sh",
     "start": "run-p start:*"
   },
   "dependencies": {

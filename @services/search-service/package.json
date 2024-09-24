@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "main": "./types/typescript/index.ts",
   "scripts": {
+    "build": "sh ./scripts/generate.sh",
     "dev": "pnpm start",
-    "start:conjure": "sh ./scripts/generate.sh",
     "start:server": "go run ./src/main.go",
     "start": "run-s start:*"
   },

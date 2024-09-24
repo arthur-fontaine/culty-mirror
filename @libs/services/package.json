@@ -15,14 +15,15 @@
     "dist"
   ],
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "dev": "pnpm build --watch"
   },
   "dependencies": {
     "@culty/tsconfig": "workspace:*",
-    "conjure-client": "^2.11.0"
+    "conjure-client": "^2.11.0",
+    "@culty/search-service": "workspace:*"
   },
   "devDependencies": {
-    "@culty/search-service": "workspace:*",
     "vite": "^5.4.7",
     "vite-plugin-dts": "^4.2.2"
   }

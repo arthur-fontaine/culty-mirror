@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "turbo build",
+    "predev": "pnpm build",
     "dev": "turbo dev"
   },
   "keywords": [],
