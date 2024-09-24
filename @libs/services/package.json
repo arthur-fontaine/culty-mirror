@@ -1,0 +1,29 @@
+{
+  "name": "@culty/services",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/services.js",
+      "require": "./dist/services.umd.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/services.umd.cjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@culty/tsconfig": "workspace:*",
+    "conjure-client": "^2.11.0"
+  },
+  "devDependencies": {
+    "@culty/search-service": "workspace:*",
+    "vite": "^5.4.7",
+    "vite-plugin-dts": "^4.2.2"
+  }
+}

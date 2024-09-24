@@ -1,6 +1,7 @@
 {
   "name": "@culty/search-service",
   "version": "0.0.0",
+  "main": "./types/typescript/index.ts",
   "scripts": {
     "dev": "pnpm start",
     "start:conjure": "sh ./scripts/generate.sh",

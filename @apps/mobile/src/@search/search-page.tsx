@@ -17,8 +17,8 @@ export const SearchPage = () => {
     {isLoading && <Text>Loading...</Text>}
     {data && (
       <View>
-        {data.map((post) => (
-          <Text key={post.id}>{post.title}</Text>
+        {data.results.map((post) => (
+          <Text key={post.resultId}>{post.resultId}</Text>
         ))}
       </View>
     )}

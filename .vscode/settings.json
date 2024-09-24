@@ -4,7 +4,7 @@
   "explorer.fileNesting.patterns": {
     ".env": "*.env, .env.*, .envrc, env.d.ts",
     ".gitignore": ".gitattributes, .gitmodules, .gitmessage, .mailmap, .git-blame*",
-    "package.json": "*rc, pnpm-lock.yaml, pnpm-workspace.yaml, turbo.json, *.config.js, *.config.ts, biome.json*, go.mod, go.sum",
+    "package.json": "*rc, pnpm-lock.yaml, pnpm-workspace.yaml, turbo.json, *.config.js, *.config.ts, *.config.mts, biome.json*, go.mod, go.sum, tsconfig.json",
     "*.ts": "$(capture).d.ts"
   },
   "typescript.tsdk": "node_modules/typescript/lib",

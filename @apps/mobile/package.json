@@ -7,6 +7,7 @@
     "start:expo": "expo start",
     "start:agrume": "agrume --watch",
     "start": "run-p -r start:*",
+    "dev": "pnpm start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -17,6 +18,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@culty/services": "workspace:*",
     "@expo/vector-icons": "^14.0.2",
     "@react-navigation/native": "^6.0.2",
     "@uidotdev/usehooks": "^2.4.1",
