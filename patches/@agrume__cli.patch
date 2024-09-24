@@ -1,0 +1,30 @@
+diff --git a/dist/cli.js b/dist/cli.js
+index 0908c4c9460279a2492c6be6b7c609545ccea54f..7e3bcc0c358bf24c0f6445e5891a1524acdeb037 100644
+--- a/dist/cli.js
++++ b/dist/cli.js
+@@ -206,7 +206,9 @@ async function watchAndCreateServer(params) {
+   if (typeof params.watch === "string") {
+     watchTarget = params.watch;
+   }
+-  const watcher = new import_watcher.default(watchTarget);
++  const watcher = new import_watcher.default(watchTarget, {
++    recursive: true,
++  });
+   logger.info(`Watching for changes in ${watchTarget}`);
+   const closeServer = await createServer({
+     ...params,
+diff --git a/dist/cli.mjs b/dist/cli.mjs
+index 0a72460781238df304f6da71aac20c8bf51ab6cd..99a77d63a18d6ad75991f88726f9fbd5bc363be5 100755
+--- a/dist/cli.mjs
++++ b/dist/cli.mjs
+@@ -183,7 +183,9 @@ async function watchAndCreateServer(params) {
+   if (typeof params.watch === "string") {
+     watchTarget = params.watch;
+   }
+-  const watcher = new Watcher(watchTarget);
++  const watcher = new Watcher(watchTarget, {
++    recursive: true
++  });
+   logger.info(`Watching for changes in ${watchTarget}`);
+   const closeServer = await createServer({
+     ...params,

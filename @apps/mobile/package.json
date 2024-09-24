@@ -5,8 +5,8 @@
   "scripts": {
     "start:vite": "vite build --watch",
     "start:expo": "expo start",
-    "start:agrume": "agrume",
-    "start": "run-p start:*",
+    "start:agrume": "agrume --watch",
+    "start": "run-p -r start:*",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -17,10 +17,9 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@agrume/plugin": "^3.0.0",
     "@expo/vector-icons": "^14.0.2",
     "@react-navigation/native": "^6.0.2",
-    "agrume": "^3.0.0",
+    "agrume": "^3.1.0",
     "expo": "~51.0.28",
     "expo-constants": "~16.0.2",
     "expo-font": "~12.0.9",
@@ -40,7 +39,8 @@
     "react-native-web": "~0.19.10"
   },
   "devDependencies": {
-    "@agrume/cli": "^3.0.0",
+    "@agrume/cli": "^3.1.0",
+    "@agrume/plugin": "^3.0.1",
     "@babel/core": "^7.20.0",
     "@culty/tsconfig": "workspace:*",
     "@types/jest": "^29.5.12",

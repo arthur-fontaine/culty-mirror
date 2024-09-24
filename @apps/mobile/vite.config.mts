@@ -5,9 +5,11 @@ import path from "node:path";
 import { glob } from "glob";
 import { execSync } from "node:child_process";
 import packageJson from "./package.json";
+import agrumeConfig from "./agrume.config";
 
 export default defineConfig({
   build: {
+    emptyOutDir: false,
     minify: false,
     lib: {
       entry: ["src/main.ts"],
@@ -29,7 +31,7 @@ export default defineConfig({
     },
   },
   plugins: [
-    agrumePlugin(),
+    agrumePlugin(agrumeConfig as never),
     reactPlugin(),
     {
       name: 'copy-assets',
