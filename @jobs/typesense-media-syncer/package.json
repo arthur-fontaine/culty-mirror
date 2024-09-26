@@ -1,5 +1,5 @@
 {
-  "name": "@culty/media-scrapper",
+  "name": "@culty/typesense-media-syncer",
   "version": "0.0.0",
   "scripts": {
     "start": "go run src/main.go",
@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "culty-media-db": "workspace:@culty/media-db@*",
+    "culty-media-typesense": "workspace:@culty/media-typesense@*",
     "culty-go-utils": "workspace:@culty/go-utils@*"
   }
 }

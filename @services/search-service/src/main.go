@@ -4,7 +4,7 @@ import (
 	"context"
 
 	utils "github.com/arthur-fontaine/culty/libs/go-utils/src"
-	typesenseutils "github.com/arthur-fontaine/culty/services/media-db/src"
+	typesenseutils "github.com/arthur-fontaine/culty/services/media-typesense/src"
 	"github.com/arthur-fontaine/culty/services/search-service/types/go/services/search"
 
 	"github.com/palantir/witchcraft-go-server/v2/config"

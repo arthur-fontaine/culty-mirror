@@ -1,0 +1,46 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("MEDIA_DB_MONGO_URL")
+}
+
+generator clientjs {
+  provider = "prisma-client-js"
+  output   = "./generated/clientjs"
+}
+
+generator clientgo {
+  provider = "go run github.com/steebchen/prisma-client-go"
+  output   = "./generated/clientgo"
+}
+
+model User {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  // Relations
+  likedMediasIDs String[] @map("likedMediasIDs") @db.ObjectId
+  likedMedias    Media[]  @relation(fields: [likedMediasIDs], references: [id])
+}
+
+model Media {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  // Data
+  title       String
+  type        MediaType
+  description String
+  releaseDate DateTime
+  source      String
+  sourceID    String
+
+  // Meta
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+
+  // Relations
+  likedByIDs String[] @map("likedByIDs") @db.ObjectId
+  likedBy    User[]   @relation(fields: [likedByIDs], references: [id])
+}
+
+enum MediaType {
+  MOVIE
+}

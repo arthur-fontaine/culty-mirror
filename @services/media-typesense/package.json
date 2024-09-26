@@ -1,0 +1,12 @@
+{
+  "name": "@culty/media-typesense",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "sh ./scripts/generate.sh",
+    "dev": "pnpm start",
+    "start": "docker-compose up"
+  },
+  "dependencies": {
+    "culty-go-utils": "workspace:@culty/go-utils@*"
+  }
+}

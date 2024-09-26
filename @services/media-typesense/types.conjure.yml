@@ -1,6 +1,6 @@
 types:
   definitions:
-    default-package: mediadb
+    default-package: mediatypesense
 
     objects:
       Media:
@@ -10,8 +10,6 @@ types:
           title: string
           description: string
           releaseDate: integer
-          source: string
-          sourceId: string
       MediaType:
         values:
           - MOVIE

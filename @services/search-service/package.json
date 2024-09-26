@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "culty-go-utils": "workspace:@culty/go-utils@*",
-    "culty-media-db": "workspace:@culty/media-db@*",
+    "culty-media-typesense": "workspace:@culty/media-typesense@*",
     "conjure-client": "^2.11.0"
   }
 }

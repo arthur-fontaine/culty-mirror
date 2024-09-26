@@ -450,3 +450,4 @@ $RECYCLE.BIN/
 
 bin/
 .tshy*
+**/vite.config.ts.timestamp-*

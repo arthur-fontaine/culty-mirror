@@ -1,4 +1,6 @@
-typesense-data/
-.conjure/
-# types/ are generated
-types/
+node_modules
+# Keep environment variables out of version control
+.env
+
+prisma/generated/
+mongodb-data/

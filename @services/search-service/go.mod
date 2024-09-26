@@ -51,8 +51,8 @@ require (
 	github.com/typesense/typesense-go/v2 v2.0.0
 )
 
-require "github.com/arthur-fontaine/culty/services/media-db" v0.0.0
-replace "github.com/arthur-fontaine/culty/services/media-db" v0.0.0 => "./node_modules/culty-media-db"
+require "github.com/arthur-fontaine/culty/services/media-typesense" v0.0.0
+replace "github.com/arthur-fontaine/culty/services/media-typesense" v0.0.0 => "./node_modules/culty-media-typesense"
 
 require "github.com/arthur-fontaine/culty/libs/go-utils" v0.0.0
 replace "github.com/arthur-fontaine/culty/libs/go-utils" v0.0.0 => "./node_modules/culty-go-utils"
