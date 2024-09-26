@@ -1,6 +1,6 @@
 {
-  "name": "@culty/media-db",
-  "version": "1.0.0",
+  "name": "@culty/media-interactions-db",
+  "version": "0.0.0",
   "exports": {
     ".": {
       "import": "./prisma/generated/clientjs/index.js",

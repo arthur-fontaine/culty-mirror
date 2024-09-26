@@ -13,14 +13,6 @@ generator clientgo {
   output   = "./generated/clientgo"
 }
 
-model User {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-
-  // Relations
-  likedMediasIDs String[] @map("likedMediasIDs") @db.ObjectId
-  likedMedias    Media[]  @relation(fields: [likedMediasIDs], references: [id])
-}
-
 model Media {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
@@ -35,10 +27,6 @@ model Media {
   // Meta
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
-
-  // Relations
-  likedByIDs String[] @map("likedByIDs") @db.ObjectId
-  likedBy    User[]   @relation(fields: [likedByIDs], references: [id])
 }
 
 enum MediaType {

@@ -1,0 +1,71 @@
+types:
+  definitions:
+    default-package: com.culty.services.mediainteractions
+
+    objects:
+      GetInteractionsRequest:
+        fields:
+          mediaId: string
+          userId: string
+
+      GetInteractionsResponse:
+        fields:
+          consumed: optional<boolean>
+          bookmarked: optional<boolean>
+          favorited: optional<boolean>
+          rating: optional<double>
+
+      InteractRequest:
+        fields:
+          mediaId: string
+          userId: string
+
+      RateRequest:
+        fields:
+          mediaId: string
+          userId: string
+          rating: optional<double>
+
+    errors:
+      ActionImpossible:
+        namespace: MediaInteractionsService
+        code: CONFLICT
+
+services:
+  MediaInteractionsService:
+    name: MediaInteractionsService
+    package: com.culty.services.mediainteractions
+    endpoints:
+      getInteractions:
+        http: POST /getInteractions
+        args:
+          request: GetInteractionsRequest
+        returns: GetInteractionsResponse
+      consume:
+        http: POST /consume
+        args:
+          request: InteractRequest
+      unconsume:
+        http: POST /unconsume
+        args:
+          request: InteractRequest
+      bookmark:
+        http: POST /bookmark
+        args:
+          request: InteractRequest
+      unbookmark:
+        http: POST /unbookmark
+        args:
+          request: InteractRequest
+      favorite:
+        http: POST /favorite
+        args:
+          request: InteractRequest
+      unfavorite:
+        http: POST /unfavorite
+        args:
+          request: InteractRequest
+      rate:
+        http: POST /rate
+        args:
+          request: RateRequest

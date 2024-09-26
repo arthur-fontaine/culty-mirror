@@ -19,7 +19,8 @@ type Env struct {
 	MEDIA_DB_NAME      string
 	MEDIA_DB_MONGO_URL string
 
-	SEARCH_SERVICE_PORT int
+	SEARCH_SERVICE_PORT             int
+	MEDIA_INTERACTIONS_SERVICE_PORT int
 }
 
 func GetEnv() Env {
@@ -37,7 +38,8 @@ func GetEnv() Env {
 		MEDIA_DB_NAME:      os.Getenv("MEDIA_DB_NAME"),
 		MEDIA_DB_MONGO_URL: os.Getenv("MEDIA_DB_MONGO_URL"),
 
-		SEARCH_SERVICE_PORT: getEnvAsInt("SEARCH_SERVICE_PORT"),
+		SEARCH_SERVICE_PORT:             getEnvAsInt("SEARCH_SERVICE_PORT"),
+		MEDIA_INTERACTIONS_SERVICE_PORT: getEnvAsInt("MEDIA_INTERACTIONS_SERVICE_PORT"),
 	}
 }
 

@@ -452,3 +452,5 @@ bin/
 .tshy*
 **/vite.config.ts.timestamp-*
 **/vite.config.mts.timestamp-*
+**/.conjure/
+**/prisma/generated/

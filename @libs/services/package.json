@@ -21,7 +21,8 @@
   "dependencies": {
     "@culty/tsconfig": "workspace:*",
     "conjure-client": "^2.11.0",
-    "@culty/search-service": "workspace:*"
+    "@culty/search-service": "workspace:*",
+    "@culty/media-interactions-service": "workspace:*"
   },
   "devDependencies": {
     "vite": "^5.4.7",
