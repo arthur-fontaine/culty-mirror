@@ -14,7 +14,7 @@ func main() {
 	env := utils.GetEnv()
 	db := mediadb.NewClient(mediadb.WithDatasourceURL(env.MEDIA_DB_MONGO_URL))
 
-	time.Sleep(time.Duration(env.MONGODB_INIT_SLEEP) * time.Second)
+	time.Sleep(time.Duration(env.MEDIA_MONGODB_INIT_SLEEP) * time.Second)
 
 	if err := db.Connect(); err != nil {
 		log.Fatal(err)

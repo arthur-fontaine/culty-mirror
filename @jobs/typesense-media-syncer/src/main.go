@@ -47,7 +47,7 @@ func main() {
 
 func getMongoClient(ctx context.Context, env utils.Env) (*mongo.Client, error) {
 	mongodbClientOptions := mongoOptions.Client().
-		ApplyURI("mongodb://localhost:" + env.MONGODB_PORT)
+		ApplyURI("mongodb://localhost:" + env.MEDIA_MONGODB_PORT)
 	mongodbClient, err := mongo.Connect(ctx, mongodbClientOptions)
 	if err != nil {
 		return nil, err
@@ -56,7 +56,7 @@ func getMongoClient(ctx context.Context, env utils.Env) (*mongo.Client, error) {
 }
 
 func getMediaChangeStream(ctx context.Context, env utils.Env, mongoClient *mongo.Client) (*mongo.ChangeStream, error) {
-	collection := mongoClient.Database(env.MONGODB_MEDIA_DB).Collection("Media")
+	collection := mongoClient.Database(env.MEDIA_DB_NAME).Collection("Media")
 	streamOptions := mongoOptions.ChangeStream().SetFullDocument(mongoOptions.UpdateLookup)
 	changeStream, err := collection.Watch(ctx, mongo.Pipeline{}, streamOptions)
 	if err != nil {

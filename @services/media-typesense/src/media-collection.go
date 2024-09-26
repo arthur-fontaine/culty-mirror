@@ -10,7 +10,7 @@ import (
 
 func GetMediaCollectionSchema(env utils.Env) *typesenseApi.CollectionSchema {
 	return &typesenseApi.CollectionSchema{
-		Name: env.TYPESENSE_MEDIA_COLLECTION_NAME,
+		Name: env.MEDIA_TYPESENSE_MEDIA_COLLECTION_NAME,
 		Fields: []typesenseApi.Field{
 			{
 				Name:  "type",
@@ -36,5 +36,5 @@ func GetMediaCollectionSchema(env utils.Env) *typesenseApi.CollectionSchema {
 }
 
 func GetMediaCollection(env utils.Env, typesenseClient *typesense.Client) typesense.CollectionInterface[*mediatypesense.Media] {
-	return typesense.GenericCollection[*mediatypesense.Media](typesenseClient, env.TYPESENSE_MEDIA_COLLECTION_NAME)
+	return typesense.GenericCollection[*mediatypesense.Media](typesenseClient, env.MEDIA_TYPESENSE_MEDIA_COLLECTION_NAME)
 }

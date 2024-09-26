@@ -25,7 +25,7 @@ func (s *SearchService) Search(ctx context.Context, requestArg search.SearchRequ
 		QueryBy: typesensePointer.String("title"),
 	}
 
-	results, err := typesenseClient.Collection(env.TYPESENSE_MEDIA_COLLECTION_NAME).Documents().Search(context.Background(), searchParameters)
+	results, err := typesenseClient.Collection(env.MEDIA_TYPESENSE_MEDIA_COLLECTION_NAME).Documents().Search(context.Background(), searchParameters)
 
 	if err != nil {
 		return search.SearchResponse{}, err

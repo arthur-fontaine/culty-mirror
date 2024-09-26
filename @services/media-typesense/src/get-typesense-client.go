@@ -10,8 +10,8 @@ import (
 
 func GetTypesenseClient(env utils.Env) *typesense.Client {
 	typesenseClient := typesense.NewClient(
-		typesense.WithServer(env.TYPESENSE_HOST+":"+env.TYPESENSE_PORT),
-		typesense.WithAPIKey(env.TYPESENSE_API_KEY),
+		typesense.WithServer(env.TYPESENSE_HOST+":"+env.MEDIA_TYPESENSE_PORT),
+		typesense.WithAPIKey(env.MEDIA_TYPESENSE_API_KEY),
 		typesense.WithConnectionTimeout(30*time.Second),
 		typesense.WithNumRetries(3),
 		typesense.WithRetryInterval(10*time.Second),

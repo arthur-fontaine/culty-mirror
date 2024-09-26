@@ -6,17 +6,17 @@ import (
 )
 
 type Env struct {
-	TYPESENSE_PORT                  string
-	TYPESENSE_HOST                  string
-	TYPESENSE_API_KEY               string
-	TYPESENSE_MEDIA_COLLECTION_NAME string
+	MEDIA_TYPESENSE_PORT                  string
+	TYPESENSE_HOST                        string
+	MEDIA_TYPESENSE_API_KEY               string
+	MEDIA_TYPESENSE_MEDIA_COLLECTION_NAME string
 
 	TMDB_API_KEY string
 
-	MONGODB_PORT       string
-	MONGODB_INIT_SLEEP int
+	MEDIA_MONGODB_PORT       string
+	MEDIA_MONGODB_INIT_SLEEP int
 
-	MONGODB_MEDIA_DB   string
+	MEDIA_DB_NAME      string
 	MEDIA_DB_MONGO_URL string
 
 	SEARCH_SERVICE_PORT int
@@ -24,17 +24,17 @@ type Env struct {
 
 func GetEnv() Env {
 	return Env{
-		TYPESENSE_PORT:                  os.Getenv("TYPESENSE_PORT"),
-		TYPESENSE_HOST:                  "http://localhost",
-		TYPESENSE_API_KEY:               os.Getenv("TYPESENSE_API_KEY"),
-		TYPESENSE_MEDIA_COLLECTION_NAME: os.Getenv("TYPESENSE_MEDIA_COLLECTION_NAME"),
+		MEDIA_TYPESENSE_PORT:                  os.Getenv("MEDIA_TYPESENSE_PORT"),
+		TYPESENSE_HOST:                        "http://localhost",
+		MEDIA_TYPESENSE_API_KEY:               os.Getenv("MEDIA_TYPESENSE_API_KEY"),
+		MEDIA_TYPESENSE_MEDIA_COLLECTION_NAME: os.Getenv("MEDIA_TYPESENSE_MEDIA_COLLECTION_NAME"),
 
 		TMDB_API_KEY: os.Getenv("TMDB_API_KEY"),
 
-		MONGODB_PORT:       os.Getenv("MONGODB_PORT"),
-		MONGODB_INIT_SLEEP: getEnvAsInt("MONGODB_INIT_SLEEP"),
+		MEDIA_MONGODB_PORT:       os.Getenv("MEDIA_MONGODB_PORT"),
+		MEDIA_MONGODB_INIT_SLEEP: getEnvAsInt("MEDIA_MONGODB_INIT_SLEEP"),
 
-		MONGODB_MEDIA_DB:   os.Getenv("MONGODB_MEDIA_DB"),
+		MEDIA_DB_NAME:      os.Getenv("MEDIA_DB_NAME"),
 		MEDIA_DB_MONGO_URL: os.Getenv("MEDIA_DB_MONGO_URL"),
 
 		SEARCH_SERVICE_PORT: getEnvAsInt("SEARCH_SERVICE_PORT"),
