@@ -2,7 +2,7 @@ package scrappers
 
 import (
 	"context"
-	"fmt"
+	"log"
 	"strconv"
 	"time"
 
@@ -24,13 +24,13 @@ func ScrapTMDB(
 
 	tmdbClient, err := tmdb.Init(env.TMDB_API_KEY)
 	if err != nil {
-		fmt.Println(err)
+		log.Println("Failed to initialize TMDB client", err)
 		return nil
 	}
 
 	latestMovie, err := tmdbClient.GetMovieLatest(map[string]string{})
 	if err != nil {
-		fmt.Println(err)
+		log.Println("Failed to get latest movie", err)
 		return nil
 	}
 	latestId := int(latestMovie.ID)
@@ -39,14 +39,14 @@ func ScrapTMDB(
 		for i := minimumId; i <= latestId; i++ {
 			movie, err := tmdbClient.GetMovieDetails(i, map[string]string{})
 			if err != nil {
-				fmt.Println(err)
+				log.Println("Failed to get movie details", i, err)
 				continue
 			}
 
 			layout := "2006-01-02"
 			releaseDate, err := time.Parse(layout, movie.ReleaseDate)
 			if err != nil {
-				fmt.Println(err)
+				log.Println("Failed to parse release date", i, movie.ReleaseDate, err, "... skipping.")
 				continue
 			}
 
@@ -73,7 +73,7 @@ func getLastIdSaved(mediadbClient *mediadb.PrismaClient) int {
 	).Exec(context.Background())
 
 	if err != nil {
-		fmt.Println(err)
+		log.Println("Failed to get last saved media", err)
 		return 0
 	}
 
@@ -81,7 +81,7 @@ func getLastIdSaved(mediadbClient *mediadb.PrismaClient) int {
 
 	lastId, err := strconv.Atoi(lastIdStr)
 	if err != nil {
-		fmt.Println(err)
+		log.Println("Failed to convert last saved media id to int", err)
 		return 0
 	}
 
