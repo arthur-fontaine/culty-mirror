@@ -17,7 +17,7 @@ func main() {
 	time.Sleep(time.Duration(env.MEDIA_MONGODB_INIT_SLEEP) * time.Second)
 
 	if err := db.Connect(); err != nil {
-		log.Fatal(err)
+		log.Fatalln("Failed to connect to MongoDB", err)
 	}
 
 	for media := range utils.MergeChan(scrappers.ScrapTMDB(env, db)) {

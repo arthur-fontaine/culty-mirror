@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"time"
 
 	utils "github.com/arthur-fontaine/culty/libs/go-utils/src"
 	typesenseutils "github.com/arthur-fontaine/culty/services/media-typesense/src"
@@ -23,17 +24,24 @@ func main() {
 	// Connect to MongoDB
 	mongoClient, err := getMongoClient(context.TODO(), env)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalln("Failed to connect to MongoDB", err)
 	}
 	defer mongoClient.Disconnect(context.TODO())
 
 	// Connect to Typesense
 	typesenseClient := typesenseutils.GetTypesenseClient(env)
+	for i := 0; i < 10; i++ { // Retry 10 times
+		typesenseIsUp, _ := typesenseClient.Health(context.TODO(), 10*time.Second)
+		time.Sleep(1 * time.Second)
+		if typesenseIsUp {
+			break
+		}
+	}
 
 	// Get the media change stream
 	mediaChangeStream, err := getMediaChangeStream(context.TODO(), env, mongoClient)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalln("Failed to get media change stream", err)
 	}
 	defer mediaChangeStream.Close(context.TODO())
 
@@ -41,7 +49,7 @@ func main() {
 	handleMediaChange(context.TODO(), env, mediaChangeStream, typesenseClient)
 
 	if err := mediaChangeStream.Err(); err != nil {
-		log.Fatal(err)
+		log.Fatalln("Error while listening to media change stream", err)
 	}
 }
 
@@ -68,7 +76,7 @@ func getMediaChangeStream(ctx context.Context, env utils.Env, mongoClient *mongo
 func handleMediaChange(ctx context.Context, env utils.Env, changeStream *mongo.ChangeStream, typesenseClient *typesense.Client) {
 	_, err := typesenseutils.UpsertTypesenseCollection(typesenseClient, *typesenseutils.GetMediaCollectionSchema(env))
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalln("Failed to upsert media collection schema", err)
 		return
 	}
 
