@@ -1,11 +1,11 @@
-import { defineConfig } from "vite";
-import reactPlugin from "@vitejs/plugin-react";
-import agrumePlugin from "@agrume/plugin/vite";
-import path from "node:path";
-import { glob } from "glob";
 import { execSync } from "node:child_process";
-import packageJson from "./package.json";
+import path from "node:path";
+import agrumePlugin from "@agrume/plugin/vite";
+import reactPlugin from "@vitejs/plugin-react";
+import { glob } from "glob";
+import { defineConfig } from "vite";
 import agrumeConfig from "./agrume.config";
+import packageJson from "./package.json";
 
 export default defineConfig({
   build: {
@@ -18,12 +18,18 @@ export default defineConfig({
     },
     rollupOptions: {
       input: glob.sync(path.resolve(__dirname, "src/**/*"), {
+        absolute: false,
         nodir: true,
       }),
       output: {
         preserveModules: true,
         preserveModulesRoot: "src",
-        entryFileNames: ({ name: fileName }) => `${fileName}.js`,
+        entryFileNames: ({ facadeModuleId, name: fileName }) => {
+          if (facadeModuleId === null) {
+            return fileName;
+          }
+          return path.relative("src", facadeModuleId).replace("[", "\\[").replace("]", "\\]").replace(/.(t|j)sx?/, ".js");
+        }
       },
       external: (_id, importer) => {
         return importer !== undefined;
@@ -37,14 +43,24 @@ export default defineConfig({
       name: 'copy-assets',
       apply: 'build',
       writeBundle() {
-        glob.sync(path.resolve(__dirname, "src/**/*"), {
+        for (const file of glob.sync(path.resolve(__dirname, "src/**/*"), {
           nodir: true,
-        }).filter((file) => !file.endsWith(".ts") && !file.endsWith(".tsx")).forEach((file) => {
+        })) {
+          if (file.endsWith(".ts") || file.endsWith(".tsx")) {
+            continue;
+          }
+
           const dest = file.replace("src/", "dist/");
           execSync(`mkdir -p ${path.dirname(dest)}`);
           execSync(`cp ${file} ${dest}`);
-        });
+        }
       },
+    },
+    {
+      name: 'rename-escaped-brackets',
+      closeBundle() {
+        execSync("find dist -depth -name '*\\[*\\]*' -execdir bash -c 'mv \"$1\" \"${1//\\\\}\"' bash {} \\;");
+      }
     },
   ],
 });

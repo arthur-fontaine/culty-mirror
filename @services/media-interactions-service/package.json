@@ -11,5 +11,8 @@
     "conjure-client": "^2.11.0",
     "culty-media-interactions-db": "workspace:@culty/media-interactions-db@*",
     "culty-go-utils": "workspace:@culty/go-utils@*"
+  },
+  "devDependencies": {
+    "@culty/tsconfig": "workspace:*"
   }
 }

@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	"errors"
+	"log"
+	"time"
 
 	utils "github.com/arthur-fontaine/culty/libs/go-utils/src"
 	mediaInteractionsDb "github.com/arthur-fontaine/culty/services/media-interactions-db/prisma/generated/clientgo"
@@ -13,7 +15,7 @@ import (
 )
 
 type MediaInteractionsService struct {
-	mediaInteractionsDb mediaInteractionsDb.PrismaClient
+	mediaInteractionsDb *mediaInteractionsDb.PrismaClient
 }
 
 func (m *MediaInteractionsService) getMediaInteraction(ctx context.Context, userId string, mediaId string) (*mediaInteractionsDb.MediaInteractionModel, error) {
@@ -247,7 +249,17 @@ func main() {
 
 	if err := witchcraft.NewServer().
 		WithInitFunc(func(ctx context.Context, info witchcraft.InitInfo) (func(), error) {
-			if err := mediainteractions.RegisterRoutesMediaInteractionsService(info.Router, &MediaInteractionsService{}); err != nil {
+			db := mediaInteractionsDb.NewClient(mediaInteractionsDb.WithDatasourceURL(env.MEDIA_DB_MONGO_URL))
+
+			time.Sleep(time.Duration(env.MEDIA_INTERACTIONS_DB_INIT_SLEEP) * time.Second)
+
+			if err := db.Connect(); err != nil {
+				log.Fatalln("Failed to connect to MongoDB", err)
+			}
+
+			if err := mediainteractions.RegisterRoutesMediaInteractionsService(info.Router, &MediaInteractionsService{
+				mediaInteractionsDb: db,
+			}); err != nil {
 				return nil, err
 			}
 			return nil, nil

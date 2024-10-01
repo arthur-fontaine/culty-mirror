@@ -12,6 +12,9 @@
   "types": "./prisma/generated/clientjs/index.d.ts",
   "scripts": {
     "generate": "prisma generate",
+    "premigrate": "docker-compose up -d --wait",
+    "migrate": "prisma migrate dev",
+    "postmigrate": "docker-compose down",
     "build": "pnpm generate",
     "start": "docker-compose up",
     "dev": "pnpm start"

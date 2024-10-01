@@ -5,11 +5,11 @@
   "exports": {
     ".": {
       "import": "./dist/services.js",
-      "require": "./dist/services.umd.cjs",
+      "require": "./dist/services.cjs",
       "types": "./dist/index.d.ts"
     }
   },
-  "main": "./dist/services.umd.cjs",
+  "main": "./dist/services.cjs",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"

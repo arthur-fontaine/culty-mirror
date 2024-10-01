@@ -8,6 +8,7 @@ export default defineConfig({
     lib: {
       entry: 'src/index.ts',
       name: packageJson.name,
+      formats: ['es', 'cjs'],
     },
     rollupOptions: {
       external: (source) => !source.startsWith('.') && !source.startsWith('/') && !source.startsWith('@culty'),

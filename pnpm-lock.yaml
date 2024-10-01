@@ -253,6 +253,10 @@ importers:
       culty-media-interactions-db:
         specifier: workspace:@culty/media-interactions-db@*
         version: link:../media-interactions-db
+    devDependencies:
+      '@culty/tsconfig':
+        specifier: workspace:*
+        version: link:../../@libs/tsconfig
 
   '@services/media-typesense':
     dependencies:
