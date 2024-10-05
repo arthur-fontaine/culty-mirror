@@ -47,6 +47,7 @@ require (
 	github.com/palantir/pkg/safeyaml v1.1.0
 	github.com/palantir/witchcraft-go-error v1.39.0
 	github.com/palantir/witchcraft-go-server/v2 v2.84.0
+	github.com/samber/lo v1.47.0
 )
 
 replace github.com/arthur-fontaine/culty/services/media-db v0.0.0 => ./node_modules/culty-media-db

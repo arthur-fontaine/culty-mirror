@@ -9,6 +9,8 @@ import (
 	mediaDb "github.com/arthur-fontaine/culty/services/media-db/prisma/generated/clientgo"
 	"github.com/arthur-fontaine/culty/services/media-service/types/go/services/media"
 
+	"github.com/samber/lo"
+
 	"github.com/palantir/witchcraft-go-server/v2/config"
 	"github.com/palantir/witchcraft-go-server/v2/witchcraft"
 )
@@ -18,23 +20,32 @@ type MediaService struct {
 }
 
 func (m *MediaService) GetById(ctx context.Context, requestArg media.GetByIdRequest) (media.Media, error) {
-	foundMedia, err := m.mediaDb.Media.FindUnique(
+	foundMedias, err := m.mediaDb.Media.FindMany(
 		mediaDb.Media.ID.Equals(requestArg.MediaId),
+	).With(
+		mediaDb.Media.Assets.Fetch(),
 	).Exec(ctx)
 
-	if err != nil {
+	if err != nil || len(foundMedias) == 0 {
 		return media.Media{}, media.NewMediaNotFound()
 	}
+
+	foundMedia := foundMedias[0]
 
 	return media.Media{
 		MediaId: foundMedia.ID,
 		Title:   foundMedia.Title,
-		// Image:   media.Image{
-		// 	Url: foundMedia.ImageURL,
-		// 	Width: foundMedia.ImageWidth,
-		// 	Height: foundMedia.ImageHeight,
-		// 	Thumbhash: foundMedia.ImageThumbhash,
-		// },
+		Images: lo.Map(
+			foundMedia.Assets(),
+			func(asset mediaDb.MediaImageModel, _ int) media.Image {
+				return media.Image{
+					Url:       asset.URL,
+					Width:     asset.Width,
+					Height:    asset.Height,
+					Thumbhash: asset.Thumbhash,
+				}
+			},
+		),
 	}, nil
 }
 

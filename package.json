@@ -6,7 +6,7 @@
   "scripts": {
     "build": "turbo build",
     "predev": "pnpm build",
-    "dev": "turbo dev"
+    "dev": "turbo dev --concurrency=100"
   },
   "keywords": [],
   "author": "",

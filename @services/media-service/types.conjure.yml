@@ -18,7 +18,7 @@ types:
         fields:
           mediaId: string
           title: string
-          image: Image
+          images: list<Image>
 
     errors:
       MediaNotFound:
