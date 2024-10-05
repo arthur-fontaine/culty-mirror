@@ -17,6 +17,7 @@ import (
 
 type MediaService struct {
 	mediaDb *mediaDb.PrismaClient
+	env     utils.Env
 }
 
 func (m *MediaService) GetById(ctx context.Context, requestArg media.GetByIdRequest) (media.Media, error) {
@@ -39,7 +40,7 @@ func (m *MediaService) GetById(ctx context.Context, requestArg media.GetByIdRequ
 			foundMedia.Assets(),
 			func(asset mediaDb.MediaImageModel, _ int) media.Image {
 				return media.Image{
-					Url:       asset.URL,
+					Url:       m.env.ASSETS_URL + "/f_webp/media_image/" + asset.URL,
 					Width:     asset.Width,
 					Height:    asset.Height,
 					Thumbhash: asset.Thumbhash,
@@ -63,6 +64,7 @@ func main() {
 			}
 
 			if err := media.RegisterRoutesMediaService(info.Router, &MediaService{
+				env:     env,
 				mediaDb: db,
 			}); err != nil {
 				return nil, err

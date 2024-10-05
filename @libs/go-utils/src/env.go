@@ -33,6 +33,8 @@ type Env struct {
 	MEDIA_SERVICE_PORT              int
 	ASSETS_DOWNLOAD_SERVICE_PORT    int
 	ASSETS_UPLOAD_SERVICE_PORT      int
+
+	ASSETS_URL string
 }
 
 func GetEnv() Env {
@@ -64,6 +66,8 @@ func GetEnv() Env {
 		MEDIA_SERVICE_PORT:              getEnvAsInt("MEDIA_SERVICE_PORT"),
 		ASSETS_DOWNLOAD_SERVICE_PORT:    getEnvAsInt("ASSETS_DOWNLOAD_SERVICE_PORT"),
 		ASSETS_UPLOAD_SERVICE_PORT:      getEnvAsInt("ASSETS_UPLOAD_SERVICE_PORT"),
+
+		ASSETS_URL: os.Getenv("ASSETS_URL"),
 	}
 }
 

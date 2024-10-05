@@ -1,3 +1,4 @@
+import { Image } from "expo-image"
 import { Button, Text, View } from "react-native"
 import { createUseStyles } from "../shared/theme/create-use-styles"
 import { useMedia } from "./hooks/use-media"
@@ -24,6 +25,15 @@ export const MediaPage = (params: MediaPageParams) => {
 
   return <View style={styles.view}>
     <Text>{media.title}</Text>
+
+    {media.images[0] && <Image
+      placeholder={{ thumbhash: media.images[0].thumbhash }}
+      source={{ uri: media.images[0].url }}
+      style={{
+        width: 100, // TODO: Use a better size
+        aspectRatio: media.images[0].width / media.images[0].height
+      }}
+    />}
 
     <Button
       title={media.interactions?.favorited ? "Unfavorite" : "Favorite"}
