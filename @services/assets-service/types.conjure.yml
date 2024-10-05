@@ -1,0 +1,24 @@
+types:
+  definitions:
+    default-package: com.culty.services.assets
+
+    objects:
+      UploadAssetRequest:
+        fields:
+          name: string
+          type: AssetType
+          data: binary
+
+      AssetType:
+        values:
+          - MEDIA_IMAGE
+
+services:
+  AssetsService:
+    name: AssetsService
+    package: com.culty.services.assets
+    endpoints:
+      upload:
+        http: POST /upload
+        args:
+          request: UploadAssetRequest

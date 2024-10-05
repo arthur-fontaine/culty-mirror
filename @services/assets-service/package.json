@@ -1,0 +1,16 @@
+{
+  "name": "@culty/assets-service",
+  "version": "0.0.0",
+  "main": "./types/typescript/index.ts",
+  "scripts": {
+    "build": "sh ./scripts/generate.sh",
+    "start:ul": "go run src/main.go",
+    "start:dl": "ipx serve --dir $ASSETS_PATH --port $ASSETS_DOWNLOAD_SERVICE_PORT",
+    "start": "run-p start:*",
+    "dev": "pnpm run start"
+  },
+  "dependencies": {
+    "ipx": "^3.0.1",
+    "culty-go-utils": "workspace:@culty/go-utils@*"
+  }
+}
