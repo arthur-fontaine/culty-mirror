@@ -8,6 +8,10 @@ types:
           name: string
           type: AssetType
           data: binary
+        
+      UploadAssetResponse:
+        fields:
+          id: string
 
       AssetType:
         values:
@@ -22,3 +26,4 @@ services:
         http: POST /upload
         args:
           request: UploadAssetRequest
+        returns: UploadAssetResponse

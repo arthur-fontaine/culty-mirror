@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/arthur-fontaine/culty/jobs/media-scrapper/src/scrappers"
+	treatimage "github.com/arthur-fontaine/culty/jobs/media-scrapper/src/treat-image"
 	utils "github.com/arthur-fontaine/culty/libs/go-utils/src"
 	mediadb "github.com/arthur-fontaine/culty/services/media-db/prisma/generated/clientgo"
 )
@@ -21,7 +22,7 @@ func main() {
 	}
 
 	for media := range utils.MergeChan(scrappers.ScrapTMDB(env, db)) {
-		db.Media.CreateOne(
+		createdMedia, err := db.Media.CreateOne(
 			mediadb.Media.Title.Set(media.Title),
 			mediadb.Media.Type.Set(media.Type),
 			mediadb.Media.Description.Set(media.Description),
@@ -29,5 +30,32 @@ func main() {
 			mediadb.Media.Source.Set(media.Source),
 			mediadb.Media.SourceID.Set(media.SourceID),
 		).Exec(context.Background())
+
+		if err != nil {
+			log.Println("Failed to create media", err)
+			continue
+		}
+
+		image, err := treatimage.TreatImage(env, media.Assets()[0].InnerMediaImage)
+
+		if err != nil {
+			log.Println("Failed to treat image", err)
+			continue
+		}
+
+		_, err = db.MediaImage.CreateOne(
+			mediadb.MediaImage.URL.Set(image.URL),
+			mediadb.MediaImage.Thumbhash.Set(image.Thumbhash),
+			mediadb.MediaImage.Width.Set(image.Width),
+			mediadb.MediaImage.Height.Set(image.Height),
+			mediadb.MediaImage.Media.Link(
+				mediadb.Media.ID.Equals(createdMedia.ID),
+			),
+		).Exec(context.Background())
+
+		if err != nil {
+			log.Println("Failed to create media image", err)
+			continue
+		}
 	}
 }

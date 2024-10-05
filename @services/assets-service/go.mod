@@ -38,6 +38,7 @@ require (
 
 require (
 	github.com/arthur-fontaine/culty/libs/go-utils v0.0.0
+	github.com/google/uuid v1.6.0
 	github.com/palantir/conjure-go-runtime/v2 v2.79.0
 	github.com/palantir/pkg/safejson v1.1.0
 	github.com/palantir/pkg/safeyaml v1.1.0

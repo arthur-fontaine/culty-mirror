@@ -50,6 +50,13 @@ func ScrapTMDB(
 				continue
 			}
 
+			imageUrl := ""
+			if len(movie.PosterPath) > 0 {
+				imageUrl = "https://image.tmdb.org/t/p/original" + movie.PosterPath
+			} else {
+				log.Println("Failed to get image url", i, movie.Title, "(", movie.ID, ")", "... skipping.")
+			}
+
 			medias <- mediadb.MediaModel{
 				InnerMedia: mediadb.InnerMedia{
 					Title:       movie.Title,
@@ -59,6 +66,15 @@ func ScrapTMDB(
 					Source:      source,
 					SourceID:    strconv.Itoa(i),
 				},
+				RelationsMedia: mediadb.RelationsMedia{
+					Assets: []mediadb.MediaImageModel{
+						{
+							InnerMediaImage: mediadb.InnerMediaImage{
+								URL: imageUrl,
+							},
+						},
+					},
+				},
 			}
 		}
 	}()
@@ -67,6 +83,7 @@ func ScrapTMDB(
 }
 
 func getLastIdSaved(mediadbClient *mediadb.PrismaClient) int {
+	// TODO: Error "Failed to get last saved media ErrNotFound"
 	v, err := mediadbClient.Media.FindFirst(
 		mediadb.Media.Source.Equals(source),
 		mediadb.Media.SourceID.Order(mediadb.SortOrderDesc),

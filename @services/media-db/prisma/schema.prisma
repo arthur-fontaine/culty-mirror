@@ -24,6 +24,9 @@ model Media {
   source      String
   sourceID    String
 
+  // Relations
+  assets MediaImage[]
+
   // Meta
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
@@ -31,4 +34,22 @@ model Media {
 
 enum MediaType {
   MOVIE
+}
+
+model MediaImage {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  // Data
+  mediaID   String @db.ObjectId
+  url       String
+  thumbhash String
+  width     Int
+  height    Int
+
+  // Relations
+  media Media @relation(fields: [mediaID], references: [id])
+
+  // Meta
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
 }
