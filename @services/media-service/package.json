@@ -1,0 +1,18 @@
+{
+  "name": "@culty/media-service",
+  "version": "0.0.0",
+  "main": "./types/typescript/index.ts",
+  "scripts": {
+    "build": "sh ./scripts/generate.sh",
+    "dev": "pnpm start",
+    "start": "go run ./src/main.go"
+  },
+  "dependencies": {
+    "conjure-client": "^2.11.0",
+    "culty-media-db": "workspace:@culty/media-db@*",
+    "culty-go-utils": "workspace:@culty/go-utils@*"
+  },
+  "devDependencies": {
+    "@culty/tsconfig": "workspace:*"
+  }
+}

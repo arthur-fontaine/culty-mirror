@@ -1,4 +1,4 @@
-import { mediaInteractionsService } from "@culty/services";
+import { mediaInteractionsService, mediaService } from "@culty/services";
 import { createRoute } from "agrume";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useSession } from "../../shared/hooks/use-session";
@@ -12,18 +12,14 @@ export const useMedia = (mediaId: string) => {
     userId,
   };
 
-  const { data: media } = useQuery({
+  const { data: media, isLoading: isMediaLoading } = useQuery({
     queryKey: ["media", mediaId],
-    // queryFn: () => createRoute(mediaService.getMedia)({ mediaId }),
-    queryFn: () => ({
-      title: "Media Title",
-      id: mediaId,
-    }),
+    queryFn: () => createRoute(mediaService.getById)({ mediaId }),
   });
 
   const QUERY_MEDIA_INTERACTIONS_KEY = ["media", "interactions", interactRequestParams];
 
-  const { data: mediaInteractions } = useQuery({
+  const { data: mediaInteractions, isLoading: isMediaInteractionsLoading } = useQuery({
     queryKey: QUERY_MEDIA_INTERACTIONS_KEY,
     queryFn: () => createRoute(mediaInteractionsService.getInteractions)(interactRequestParams),
   });
@@ -102,8 +98,11 @@ export const useMedia = (mediaId: string) => {
   const toggleConsume = () => mediaInteractions?.consumed ? unconsume() : consume();
   const toggleBookmark = () => mediaInteractions?.bookmarked ? unbookmark() : bookmark();
 
+  const isLoading = isMediaLoading || isMediaInteractionsLoading;
+
   return {
-    media: {
+    isLoading,
+    media: media && {
       ...media,
       interactions: mediaInteractions,
       favorite,

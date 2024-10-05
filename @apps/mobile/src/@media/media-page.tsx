@@ -8,7 +8,19 @@ interface MediaPageParams {
 
 export const MediaPage = (params: MediaPageParams) => {
   const { styles } = useStyles()
-  const { media } = useMedia(params.mediaId)
+  const { media, isLoading } = useMedia(params.mediaId)
+
+  if (isLoading) {
+    return <View style={styles.view}>
+      <Text>Loading...</Text>
+    </View>
+  }
+
+  if (!media) {
+    return <View style={styles.view}>
+      <Text>Media not found</Text>
+    </View>
+  }
 
   return <View style={styles.view}>
     <Text>{media.title}</Text>

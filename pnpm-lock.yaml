@@ -181,6 +181,9 @@ importers:
       '@culty/media-interactions-service':
         specifier: workspace:*
         version: link:../../@services/media-interactions-service
+      '@culty/media-service':
+        specifier: workspace:*
+        version: link:../../@services/media-service
       '@culty/search-service':
         specifier: workspace:*
         version: link:../../@services/search-service
@@ -253,6 +256,22 @@ importers:
       culty-media-interactions-db:
         specifier: workspace:@culty/media-interactions-db@*
         version: link:../media-interactions-db
+    devDependencies:
+      '@culty/tsconfig':
+        specifier: workspace:*
+        version: link:../../@libs/tsconfig
+
+  '@services/media-service':
+    dependencies:
+      conjure-client:
+        specifier: ^2.11.0
+        version: 2.11.0
+      culty-go-utils:
+        specifier: workspace:@culty/go-utils@*
+        version: link:../../@libs/go-utils
+      culty-media-db:
+        specifier: workspace:@culty/media-db@*
+        version: link:../media-db
     devDependencies:
       '@culty/tsconfig':
         specifier: workspace:*

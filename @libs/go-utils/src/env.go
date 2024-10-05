@@ -28,6 +28,7 @@ type Env struct {
 
 	SEARCH_SERVICE_PORT             int
 	MEDIA_INTERACTIONS_SERVICE_PORT int
+	MEDIA_SERVICE_PORT              int
 }
 
 func GetEnv() Env {
@@ -54,6 +55,7 @@ func GetEnv() Env {
 
 		SEARCH_SERVICE_PORT:             getEnvAsInt("SEARCH_SERVICE_PORT"),
 		MEDIA_INTERACTIONS_SERVICE_PORT: getEnvAsInt("MEDIA_INTERACTIONS_SERVICE_PORT"),
+		MEDIA_SERVICE_PORT:              getEnvAsInt("MEDIA_SERVICE_PORT"),
 	}
 }
 

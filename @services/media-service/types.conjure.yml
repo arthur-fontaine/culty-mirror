@@ -1,0 +1,37 @@
+types:
+  definitions:
+    default-package: com.culty.services.media
+
+    objects:
+      GetByIdRequest:
+        fields:
+          mediaId: string
+
+      Image:
+        fields:
+          url: string
+          width: integer
+          height: integer
+          thumbhash: string
+
+      Media:
+        fields:
+          mediaId: string
+          title: string
+          image: Image
+
+    errors:
+      MediaNotFound:
+        namespace: MediaService
+        code: NOT_FOUND
+
+services:
+  MediaService:
+    name: MediaService
+    package: com.culty.services.media
+    endpoints:
+      getById:
+        http: POST /getById
+        args:
+          request: GetByIdRequest
+        returns: Media
