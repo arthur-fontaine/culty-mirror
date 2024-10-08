@@ -6,13 +6,15 @@ const base: Omit<Theme[keyof Theme], 'colors'> = {
   spacing: {
     horizontal: {
       screen: 24,
-      afterIcon: 12,
-      betweenElements: 16,
+      icon: 12,
+      insideGroup: 16,
     },
     vertical: {
       screen: 24,
-      groupedElements: 4,
-      beforeBody: 12,
+      glued: 4,
+      beforeTextBody: 12,
+      insideGroup: 24,
+      betweenDifferentElements: 48,
     },
   },
   paddings: {

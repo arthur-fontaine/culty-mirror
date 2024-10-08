@@ -1,6 +1,6 @@
 import type React from "react";
 import { useCallback, useRef } from "react";
-import { TextInput, type TextInputProps, TouchableWithoutFeedback, View } from "react-native"
+import { Pressable, TextInput, type TextInputProps, TouchableWithoutFeedback, View } from "react-native"
 import { createUseStyles } from "../theme/create-use-styles";
 import type { IconProps } from "../types/icon-props";
 
@@ -21,7 +21,7 @@ export const UITextInput = (props: UITextInputProps) => {
     textInputRef.current?.focus()
   }, [])
 
-  return <TouchableWithoutFeedback onPress={onWrapperClick}>
+  return <Pressable onPress={onWrapperClick}>
     <View style={styles.wrapper}>
       {props.icon !== undefined && <props.icon style={styles.icon} />}
       <TextInput
@@ -33,7 +33,7 @@ export const UITextInput = (props: UITextInputProps) => {
         placeholderTextColor={styles.textInput.placeholderColor}
       />
     </View>
-  </TouchableWithoutFeedback>
+  </Pressable>
 }
 
 const useStyles = createUseStyles((theme) => ({
@@ -48,7 +48,7 @@ const useStyles = createUseStyles((theme) => ({
   icon: {
     color: theme.colors.placeholderIcon,
     size: 24,
-    marginRight: theme.spacing.horizontal.afterIcon,
+    marginRight: theme.spacing.horizontal.icon,
   },
   textInput: {
     color: theme.colors.textInElement,

@@ -2,7 +2,7 @@ import { Text } from "react-native";
 import { createUseStyles } from "../../theme/create-use-styles";
 import type { TypoProps } from "../../types/typo-props";
 
-export const Body = (props: TypoProps) => {
+export const UIBody = (props: TypoProps) => {
   const { styles } = useStyles();
 
   return <Text

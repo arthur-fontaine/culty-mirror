@@ -4,6 +4,7 @@ export interface StyleTokens {
   colors: {
     background: ColorString;
     backgroundElement: ColorString;
+    backgroundPressed: ColorString;
 
     primaryText: ColorString;
     secondaryText: ColorString;
@@ -17,13 +18,15 @@ export interface StyleTokens {
   spacing: {
     horizontal: {
       screen: number;
-      afterIcon: number;
-      betweenElements: number;
+      icon: number;
+      insideGroup: number;
     };
     vertical: {
       screen: number;
-      groupedElements: number;
-      beforeBody: number;
+      glued: number;
+      insideGroup: number;
+      betweenDifferentElements: number;
+      beforeTextBody: number;
     };
   };
 

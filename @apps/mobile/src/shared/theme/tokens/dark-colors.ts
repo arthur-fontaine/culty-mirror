@@ -2,6 +2,7 @@ import type { StyleTokens } from "./tokens";
 
 export const darkColors: StyleTokens['colors'] = {
   background: '#1A191B',
+  backgroundPressed: '#2D2C2E',
   backgroundElement: '#F5F5F5',
   textInElement: '#000000',
   primaryText: '#FFFFFF',

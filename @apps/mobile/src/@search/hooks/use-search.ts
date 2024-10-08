@@ -11,6 +11,13 @@ export const useSearch = () => {
   const { data, isLoading } = useQuery({
     queryKey: ['search', debouncedSearchTerms],
     queryFn: () => createRoute(async (query: string) => searchService.search({ query }))(debouncedSearchTerms),
+    select: (data) => ({
+      ...data,
+      results: data.results.map((result) => ({
+        ...result,
+        releaseDate: new Date(result.releaseDate),
+      })),
+    }),
   });
 
   return {
