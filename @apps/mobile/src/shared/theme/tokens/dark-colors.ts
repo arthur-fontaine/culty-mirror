@@ -5,6 +5,7 @@ export const darkColors: StyleTokens['colors'] = {
   backgroundElement: '#F5F5F5',
   textInElement: '#000000',
   primaryText: '#FFFFFF',
+  secondaryText: '#A3A3A4',
   placeholderText: '#5A585C',
   placeholderIcon: '#6D6B6F',
 }

@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"log"
+	"time"
 
 	utils "github.com/arthur-fontaine/culty/libs/go-utils/src"
 	typesenseutils "github.com/arthur-fontaine/culty/services/media-typesense/src"
@@ -37,15 +37,19 @@ func (s *SearchService) Search(ctx context.Context, requestArg search.SearchRequ
 			*results.Hits,
 			func(result typesenseApi.SearchResultHit, _ int) search.SearchResult {
 				document := *result.Document
+
 				image := document["image"].(map[string]interface{})
-				log.Println("image", image)
+
+				numberOfHoursSinceUnixEpoch := document["releaseDate"].(float64) * 3600
+				releaseDate := time.Unix(int64(numberOfHoursSinceUnixEpoch), 0).Format("2006-01-02 15:04:05")
+
 				return search.SearchResult{
 					ResultId:    document["id"].(string),
 					Score:       0, // TODO
 					Title:       document["title"].(string),
 					Description: document["description"].(string),
 					Image: search.Image{
-						Url:       image["url"].(string),
+						Url:       env.ASSETS_URL + "/f_webp/media_image/" + image["url"].(string),
 						Width:     int(image["width"].(float64)),
 						Height:    int(image["height"].(float64)),
 						Thumbhash: image["thumbhash"].(string),
@@ -53,6 +57,7 @@ func (s *SearchService) Search(ctx context.Context, requestArg search.SearchRequ
 					Categories: lo.Map(document["categories"].([]interface{}), func(category interface{}, _ int) string {
 						return category.(string)
 					}),
+					ReleaseDate: releaseDate,
 				}
 			},
 		),

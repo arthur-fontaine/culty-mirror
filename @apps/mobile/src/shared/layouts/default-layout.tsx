@@ -1,13 +1,14 @@
 import type { PropsWithChildren } from "react";
+import { ScrollView, View } from "react-native";
 import { createUseStyles } from "../theme/create-use-styles";
-import { View } from "react-native";
 
 export const DefaultLayout = (props: PropsWithChildren) => {
   const { styles } = useStyles();
 
-  return <View style={styles.view}>
+  return <ScrollView style={styles.view}>
     {props.children}
-  </View>
+    <View style={{ height: styles.view.paddingTop }} /> {/* To make sure the content is spaced at the bottom */}
+  </ScrollView>;
 }
 
 const useStyles = createUseStyles((theme) => ({

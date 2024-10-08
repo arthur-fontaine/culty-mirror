@@ -6,6 +6,7 @@ export interface StyleTokens {
     backgroundElement: ColorString;
 
     primaryText: ColorString;
+    secondaryText: ColorString;
     textInElement: ColorString;
 
     placeholderText: ColorString;
@@ -17,9 +18,12 @@ export interface StyleTokens {
     horizontal: {
       screen: number;
       afterIcon: number;
+      betweenElements: number;
     };
     vertical: {
       screen: number;
+      groupedElements: number;
+      beforeBody: number;
     };
   };
 
@@ -28,10 +32,12 @@ export interface StyleTokens {
   };
 
   radius: {
+    small: number;
     medium: number;
   };
 
   fontSizes: {
+    small: number;
     medium: number;
   };
 }

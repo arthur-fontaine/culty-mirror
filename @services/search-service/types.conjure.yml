@@ -25,6 +25,7 @@ types:
           description: string
           image: Image
           categories: list<string>
+          releaseDate: string
           score: double
 
 services:
