@@ -3,13 +3,22 @@ types:
     default-package: mediatypesense
 
     objects:
+      Image:
+        fields:
+          url: string
+          width: integer
+          height: integer
+          thumbhash: string
+
       Media:
         fields:
           id: string
           type: MediaType
           title: string
           description: string
+          image: Image
           releaseDate: integer
+          categories: list<string>
       MediaType:
         values:
           - MOVIE

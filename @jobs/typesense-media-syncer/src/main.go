@@ -26,6 +26,7 @@ func main() {
 	if err != nil {
 		log.Fatalln("Failed to connect to MongoDB", err)
 	}
+
 	defer mongoClient.Disconnect(context.TODO())
 
 	// Connect to Typesense
@@ -46,7 +47,7 @@ func main() {
 	defer mediaChangeStream.Close(context.TODO())
 
 	// Handle media change
-	handleMediaChange(context.TODO(), env, mediaChangeStream, typesenseClient)
+	handleMediaChange(context.TODO(), env, mediaChangeStream, mongoClient, typesenseClient)
 
 	if err := mediaChangeStream.Err(); err != nil {
 		log.Fatalln("Error while listening to media change stream", err)
@@ -73,7 +74,13 @@ func getMediaChangeStream(ctx context.Context, env utils.Env, mongoClient *mongo
 	return changeStream, nil
 }
 
-func handleMediaChange(ctx context.Context, env utils.Env, changeStream *mongo.ChangeStream, typesenseClient *typesense.Client) {
+func handleMediaChange(
+	ctx context.Context,
+	env utils.Env,
+	changeStream *mongo.ChangeStream,
+	mongoClient *mongo.Client,
+	typesenseClient *typesense.Client,
+) {
 	_, err := typesenseutils.UpsertTypesenseCollection(typesenseClient, *typesenseutils.GetMediaCollectionSchema(env))
 	if err != nil {
 		log.Fatalln("Failed to upsert media collection schema", err)
@@ -88,36 +95,89 @@ func handleMediaChange(ctx context.Context, env utils.Env, changeStream *mongo.C
 			log.Println("Error while decoding change stream event", err)
 		}
 
-		fullDocument := event["fullDocument"].(bson.M)
-		media, err := getMediaFromDocument(fullDocument)
-		if err != nil {
-			log.Println("Error while getting media from document", err)
-			continue
-		}
+		fullMediaDoc := event["fullDocument"].(bson.M)
 
-		operationType := event["operationType"]
-		switch operationType {
-		case "insert", "update":
-			_, err := typesenseMediaCollection.Documents().Upsert(context.Background(), media)
+		go func(fullMediaDoc primitive.M) {
+			media, err := getMediaFromDocument(fullMediaDoc)
 			if err != nil {
-				log.Println(fmt.Sprintf("Error while upserting media %s (%s:%s)", media.Id, media.Type, media.Title), err)
+				log.Println("Error while getting media from document", err)
+				return
 			}
-		case "delete":
-			_, err := typesenseMediaCollection.Document(media.Id).Delete(context.Background())
+
+			mediaImage, err := getMediaImageForMediaId(ctx, mongoClient, media.Id)
 			if err != nil {
-				log.Println(fmt.Sprintf("Error while deleting media %s (%s:%s)", media.Id, media.Type, media.Title), err)
+				log.Println("Error while getting image media", media.Id, err, ". Continue because it is not important.")
 			}
-		}
+			media.Image = mediaImage
+
+			operationType := event["operationType"]
+			switch operationType {
+			case "insert", "update":
+				_, err := typesenseMediaCollection.Documents().Upsert(context.Background(), media)
+				if err != nil {
+					log.Println(fmt.Sprintf("Error while upserting media %s (%s:%s)", media.Id, media.Type, media.Title), err)
+				} else {
+					log.Printf("Upserted media %s (%s:%s)", media.Id, media.Type, media.Title)
+				}
+			case "delete":
+				_, err := typesenseMediaCollection.Document(media.Id).Delete(context.Background())
+				if err != nil {
+					log.Println(fmt.Sprintf("Error while deleting media %s (%s:%s)", media.Id, media.Type, media.Title), err)
+				} else {
+					log.Printf("Deleted media %s (%s:%s)", media.Id, media.Type, media.Title)
+				}
+			}
+		}(fullMediaDoc)
 	}
 }
 
-func getMediaFromDocument(fullDocument bson.M) (mediatypesense.Media, error) {
+func getMediaImageForMediaId(ctx context.Context, mongoClient *mongo.Client, mediaId string) (mediatypesense.Image, error) {
+	mediaIDHex, err := primitive.ObjectIDFromHex(mediaId)
+	if err != nil {
+		return mediatypesense.Image{}, err
+	}
+
+	time.Sleep(3 * time.Second)
+
+	mediaImageCollection := mongoClient.Database("media").Collection("MediaImage")
+	mediaImageFilter := bson.M{"mediaID": mediaIDHex}
+
+	secondsToWait := 5
+	intervalBetweenCount := 0.5
+	for i := 0; i < int(float64(secondsToWait)/intervalBetweenCount); i++ {
+		numberOfImage, _ := mediaImageCollection.CountDocuments(ctx, mediaImageFilter)
+		if numberOfImage > 0 {
+			break
+		}
+		time.Sleep(time.Duration(intervalBetweenCount) * time.Millisecond)
+	}
+
+	mediaImageResult := mediaImageCollection.FindOne(ctx, mediaImageFilter)
+
+	image := mediatypesense.Image{}
+	if err := mediaImageResult.Decode(&image); err != nil {
+		return mediatypesense.Image{}, err
+	}
+
+	return image, nil
+}
+
+func getMediaFromDocument(fullMediaDoc bson.M) (mediatypesense.Media, error) {
 	return mediatypesense.Media{
-		Id:          fullDocument["_id"].(primitive.ObjectID).Hex(),
-		Type:        mediatypesense.New_MediaType(mediatypesense.MediaType_Value(fullDocument["type"].(string))),
-		Title:       fullDocument["title"].(string),
-		Description: fullDocument["description"].(string),
+		Id:          fullMediaDoc["_id"].(primitive.ObjectID).Hex(),
+		Type:        mediatypesense.New_MediaType(mediatypesense.MediaType_Value(fullMediaDoc["type"].(string))),
+		Title:       fullMediaDoc["title"].(string),
+		Description: fullMediaDoc["description"].(string),
+		Categories:  convertPrimitiveAtoStringSlice(fullMediaDoc["categories"].(primitive.A)),
 		// The following line calculates the number of hours since the Unix epoch (1970-01-01 00:00:00 UTC)
-		ReleaseDate: int(fullDocument["releaseDate"].(primitive.DateTime).Time().Unix() / 3600),
+		ReleaseDate: int(fullMediaDoc["releaseDate"].(primitive.DateTime).Time().Unix() / 3600),
 	}, nil
+}
+
+func convertPrimitiveAtoStringSlice(a primitive.A) []string {
+	strSlice := make([]string, len(a))
+	for i, v := range a {
+		strSlice[i] = v.(string)
+	}
+	return strSlice
 }

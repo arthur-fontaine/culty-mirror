@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"log"
 
 	utils "github.com/arthur-fontaine/culty/libs/go-utils/src"
 	typesenseutils "github.com/arthur-fontaine/culty/services/media-typesense/src"
@@ -36,10 +37,22 @@ func (s *SearchService) Search(ctx context.Context, requestArg search.SearchRequ
 			*results.Hits,
 			func(result typesenseApi.SearchResultHit, _ int) search.SearchResult {
 				document := *result.Document
+				image := document["image"].(map[string]interface{})
+				log.Println("image", image)
 				return search.SearchResult{
-					ResultId: document["id"].(string),
-					Score:    0, // TODO
-					Title:    document["title"].(string),
+					ResultId:    document["id"].(string),
+					Score:       0, // TODO
+					Title:       document["title"].(string),
+					Description: document["description"].(string),
+					Image: search.Image{
+						Url:       image["url"].(string),
+						Width:     int(image["width"].(float64)),
+						Height:    int(image["height"].(float64)),
+						Thumbhash: image["thumbhash"].(string),
+					},
+					Categories: lo.Map(document["categories"].([]interface{}), func(category interface{}, _ int) string {
+						return category.(string)
+					}),
 				}
 			},
 		),

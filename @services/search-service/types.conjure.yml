@@ -3,6 +3,13 @@ types:
     default-package: com.culty.services.search
 
     objects:
+      Image:
+        fields:
+          url: string
+          width: integer
+          height: integer
+          thumbhash: string
+
       SearchRequest:
         fields:
           query: string
@@ -15,6 +22,9 @@ types:
         fields:
           resultId: string
           title: string
+          description: string
+          image: Image
+          categories: list<string>
           score: double
 
 services:

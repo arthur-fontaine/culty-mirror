@@ -26,12 +26,23 @@ func GetMediaCollectionSchema(env utils.Env) *typesenseApi.CollectionSchema {
 				Type: "string",
 			},
 			{
+				Name:     "image",
+				Type:     "object",
+				Optional: typesensePointer.True(),
+			},
+			{
 				Name:  "releaseDate",
 				Type:  "int32",
 				Facet: typesensePointer.True(),
 			},
+			{
+				Name:  "categories",
+				Type:  "string[]",
+				Facet: typesensePointer.True(),
+			},
 		},
 		DefaultSortingField: typesensePointer.String("releaseDate"),
+		EnableNestedFields:  typesensePointer.True(),
 	}
 }
 

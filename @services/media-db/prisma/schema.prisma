@@ -20,6 +20,7 @@ model Media {
   title       String
   type        MediaType
   description String
+  categories  String[]
   releaseDate DateTime
   source      String
   sourceID    String

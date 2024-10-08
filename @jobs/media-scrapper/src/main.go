@@ -29,6 +29,7 @@ func main() {
 			mediadb.Media.ReleaseDate.Set(media.ReleaseDate),
 			mediadb.Media.Source.Set(media.Source),
 			mediadb.Media.SourceID.Set(media.SourceID),
+			mediadb.Media.Categories.Set(media.Categories),
 		).Exec(context.Background())
 
 		if err != nil {

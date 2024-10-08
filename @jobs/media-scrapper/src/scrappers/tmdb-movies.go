@@ -57,6 +57,11 @@ func ScrapTMDB(
 				log.Println("Failed to get image url", i, movie.Title, "(", movie.ID, ")", "... skipping.")
 			}
 
+			categories := []string{}
+			for _, genre := range movie.Genres {
+				categories = append(categories, genre.Name)
+			}
+
 			medias <- mediadb.MediaModel{
 				InnerMedia: mediadb.InnerMedia{
 					Title:       movie.Title,
@@ -64,6 +69,7 @@ func ScrapTMDB(
 					Description: movie.Overview,
 					ReleaseDate: releaseDate,
 					Source:      source,
+					Categories:  categories,
 					SourceID:    strconv.Itoa(i),
 				},
 				RelationsMedia: mediadb.RelationsMedia{

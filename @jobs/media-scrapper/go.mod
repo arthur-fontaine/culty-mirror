@@ -29,7 +29,7 @@ require (
 	github.com/steebchen/prisma-client-go v0.41.0 // indirect
 	github.com/typesense/typesense-go/v2 v2.0.0 // indirect
 	golang.org/x/net v0.25.0 // indirect
-	golang.org/x/text v0.15.0 // indirect
+	golang.org/x/text v0.16.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
 
@@ -41,6 +41,7 @@ require (
 	github.com/arthur-fontaine/culty/services/media-db v0.0.0
 	github.com/galdor/go-thumbhash v1.0.0
 	github.com/palantir/conjure-go-runtime v1.0.0
+	github.com/samber/lo v1.47.0
 )
 
 replace github.com/arthur-fontaine/culty/services/media-db v0.0.0 => ./node_modules/culty-media-db
