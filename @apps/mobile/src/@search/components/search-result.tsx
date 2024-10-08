@@ -30,7 +30,7 @@ export const SearchResult = (props: SearchResultProps) => {
   const handlePressIn = useCallback(() => setIsPressed(true), [])
   const handlePressOut = useCallback(() => setIsPressed(false), [])
 
-  return <Link href={`/medias/${props.id}`} asChild>
+  return <Link href={`/medias/${props.id}`} asChild push>
     <Pressable
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}

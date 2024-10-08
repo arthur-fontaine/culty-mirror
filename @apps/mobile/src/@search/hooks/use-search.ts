@@ -1,12 +1,23 @@
 import { searchService } from '@culty/services';
 import { useDebounce } from '@uidotdev/usehooks';
 import { createRoute } from 'agrume';
-import { useState } from 'react';
+import { useGlobalSearchParams, useNavigation } from 'expo-router';
+import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
 export const useSearch = () => {
-  const [searchTerms, setSearchTerms] = useState('');
+  const { query } = useGlobalSearchParams<{
+    query: string;
+  }>();
+
+  const [searchTerms, setSearchTerms] = useState(typeof query === 'string' ? query : '');
   const debouncedSearchTerms = useDebounce(searchTerms, 500);
+
+  const navigator = useNavigation();
+
+  useEffect(() => {
+    navigator.setParams({ query: searchTerms } as never);
+  }, [searchTerms, navigator]);
 
   const { data, isLoading } = useQuery({
     queryKey: ['search', debouncedSearchTerms],
