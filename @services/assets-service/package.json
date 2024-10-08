@@ -7,7 +7,8 @@
     "start:ul": "go run src/main.go",
     "start:dl": "ipx serve --dir $ASSETS_PATH --port $ASSETS_DOWNLOAD_SERVICE_PORT",
     "start": "run-p start:*",
-    "dev": "pnpm run start"
+    "dev": "pnpm run start",
+    "reset-db": "rm -rf assets"
   },
   "dependencies": {
     "ipx": "^3.0.1",

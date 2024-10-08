@@ -14,7 +14,8 @@
     "generate": "prisma generate",
     "build": "pnpm generate",
     "start": "docker-compose up",
-    "dev": "pnpm start"
+    "dev": "pnpm start",
+    "reset-db": "rm -rf mongodb-data"
   },
   "devDependencies": {
     "@culty/tsconfig": "workspace:*",

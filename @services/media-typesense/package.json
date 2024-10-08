@@ -4,7 +4,8 @@
   "scripts": {
     "build": "sh ./scripts/generate.sh",
     "dev": "pnpm start",
-    "start": "docker-compose up"
+    "start": "docker-compose up",
+    "reset-db": "rm -rf typesense-data"
   },
   "dependencies": {
     "culty-go-utils": "workspace:@culty/go-utils@*"

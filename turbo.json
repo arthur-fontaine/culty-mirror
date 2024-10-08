@@ -6,6 +6,9 @@
     "build": {
       "outputs": []
     },
+    "reset-db": {
+      "cache": false
+    },
     "dev": {
       "persistent": true,
       "cache": false

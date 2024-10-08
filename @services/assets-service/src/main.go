@@ -26,14 +26,15 @@ func (a *AssetsService) Upload(ctx context.Context, requestArg assets.UploadAsse
 
 	id := uuid.New().String()
 
-	fileName := filepath.Join(cwd, a.env.ASSETS_PATH, requestArg.Type.String(), id+filepath.Ext(requestArg.Name))
+	fileName := id + filepath.Ext(requestArg.Name)
+	completeFileName := filepath.Join(cwd, a.env.ASSETS_PATH, requestArg.Type.String(), fileName)
 
-	err = os.MkdirAll(filepath.Dir(fileName), os.ModePerm)
+	err = os.MkdirAll(filepath.Dir(completeFileName), os.ModePerm)
 	if err != nil {
 		return assets.UploadAssetResponse{}, err
 	}
 
-	file, err := os.Create(fileName)
+	file, err := os.Create(completeFileName)
 	if err != nil {
 		return assets.UploadAssetResponse{}, err
 	}
@@ -42,7 +43,7 @@ func (a *AssetsService) Upload(ctx context.Context, requestArg assets.UploadAsse
 	file.Write(requestArg.Data)
 
 	return assets.UploadAssetResponse{
-		Id: requestArg.Name,
+		Id: fileName,
 	}, nil
 }
 
