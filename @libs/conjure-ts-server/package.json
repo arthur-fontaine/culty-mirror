@@ -1,0 +1,28 @@
+{
+  "name": "conjure-ts-server",
+  "version": "0.0.0",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tshy"
+  },
+  "dependencies": {
+    "conjure-client": "^2.11.0",
+    "hono": "^4.6.3",
+    "@hono/node-server": "^1.13.1"
+  },
+  "devDependencies": {
+    "@culty/tsconfig": "workspace:*",
+    "tshy": "^3.0.2"
+  },
+  "type": "module",
+  "tshy": {
+    "exports": {
+      "./package.json": "./package.json"
+    }
+  },
+  "exports": {
+    "./package.json": "./package.json"
+  }
+}
