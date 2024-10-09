@@ -34,8 +34,12 @@ func (m *MediaService) GetById(ctx context.Context, requestArg media.GetByIdRequ
 	foundMedia := foundMedias[0]
 
 	return media.Media{
-		MediaId: foundMedia.ID,
-		Title:   foundMedia.Title,
+		MediaId:           foundMedia.ID,
+		Title:             foundMedia.Title,
+		Description:       foundMedia.Description,
+		ReleaseDate:       foundMedia.ReleaseDate.Format("2006-01-02 15:04:05"),
+		DurationInMinutes: foundMedia.DurationInMinutes,
+		Categories:        foundMedia.Categories,
 		Images: lo.Map(
 			foundMedia.Assets(),
 			func(asset mediaDb.MediaImageModel, _ int) media.Image {

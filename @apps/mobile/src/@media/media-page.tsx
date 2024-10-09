@@ -1,6 +1,13 @@
 import { Image } from "expo-image"
 import { Button, Text, View } from "react-native"
+import { UIIconButton } from "../shared/components/icon-button"
+import { BookmarkIcon } from "../shared/components/icons/bookmark-icon"
+import { CheckIcon } from "../shared/components/icons/check-icon"
+import { UIBody } from "../shared/components/typos/body"
+import { UISmallBody } from "../shared/components/typos/small-body"
+import { DefaultLayout } from "../shared/layouts/default-layout"
 import { createUseStyles } from "../shared/theme/create-use-styles"
+import { PosterHeader } from "./components/poster-header"
 import { useMedia } from "./hooks/use-media"
 
 interface MediaPageParams {
@@ -12,65 +19,73 @@ export const MediaPage = (params: MediaPageParams) => {
   const { media, isLoading } = useMedia(params.mediaId)
 
   if (isLoading) {
-    return <View style={styles.view}>
+    return <View>
       <Text>Loading...</Text>
     </View>
   }
 
   if (!media) {
-    return <View style={styles.view}>
+    return <View>
       <Text>Media not found</Text>
     </View>
   }
 
-  return <View style={styles.view}>
-    <Text>{media.title}</Text>
-
-    {media.images[0] && <Image
-      placeholder={{ thumbhash: media.images[0].thumbhash }}
-      source={{ uri: media.images[0].url }}
-      style={{
-        width: 100, // TODO: Use a better size
-        aspectRatio: media.images[0].width / media.images[0].height
-      }}
-    />}
-
-    <Button
-      title={media.interactions?.favorited ? "Unfavorite" : "Favorite"}
-      onPress={media.toggleFavorite}
-    />
-
-    <Button
-      title={media.interactions?.bookmarked ? "Unbookmark" : "Bookmark"}
-      onPress={media.toggleBookmark}
-    />
-
-    <Button
-      title={media.interactions?.consumed ? "Unconsume" : "Consume"}
-      onPress={media.toggleConsume}
-    />
-
-    {new Array(5).fill(null).map((_, index) => (
-      <Button
-        // biome-ignore lint/suspicious/noArrayIndexKey: Index is safe here
-        key={`rate-${index}`}
-        title={`Rate ${index + 1}`}
-        onPress={() => {
-          if (media.interactions?.rating === index + 1) {
-            media.rate(undefined)
-            return
-          }
-          media.rate(index + 1)
-        }}
+  return <DefaultLayout>
+    <View>
+      <PosterHeader
+        {...media}
+        image={media.images[0]}
+        buttons={[
+          <UIIconButton
+            key="favorite"
+            icon={BookmarkIcon}
+            onPress={media.toggleBookmark}
+          />,
+          <UIIconButton
+            key="consume"
+            icon={CheckIcon}
+            onPress={media.toggleConsume}
+          />
+        ]}
       />
-    ))}
-  </View>
+      <UIBody style={styles.description}>{media.description}</UIBody>
+
+      {/* <Button
+        title={media.interactions?.favorited ? "Unfavorite" : "Favorite"}
+        onPress={media.toggleFavorite}
+      />
+
+      <Button
+        title={media.interactions?.bookmarked ? "Unbookmark" : "Bookmark"}
+        onPress={media.toggleBookmark}
+      />
+
+      <Button
+        title={media.interactions?.consumed ? "Unconsume" : "Consume"}
+        onPress={media.toggleConsume}
+      />
+
+      {new Array(5).fill(null).map((_, index) => (
+        <Button
+          // biome-ignore lint/suspicious/noArrayIndexKey: Index is safe here
+          key={`rate-${index}`}
+          title={`Rate ${index + 1}`}
+          onPress={() => {
+            if (media.interactions?.rating === index + 1) {
+              media.rate(undefined)
+              return
+            }
+            media.rate(index + 1)
+          }}
+        />
+      ))} */}
+    </View>
+  </DefaultLayout>
 }
 
 const useStyles = createUseStyles((theme) => ({
-  view: {
-    backgroundColor: 'white',
-    height: '100%',
-    width: '100%',
+  description: {
+    color: theme.colors.secondaryText,
+    marginTop: theme.spacing.vertical.betweenDifferentElements,
   },
 }))

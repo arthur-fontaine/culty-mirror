@@ -64,13 +64,14 @@ func ScrapTMDB(
 
 			medias <- mediadb.MediaModel{
 				InnerMedia: mediadb.InnerMedia{
-					Title:       movie.Title,
-					Type:        mediadb.MediaTypeMovie,
-					Description: movie.Overview,
-					ReleaseDate: releaseDate,
-					Source:      source,
-					Categories:  categories,
-					SourceID:    strconv.Itoa(i),
+					Title:             movie.Title,
+					Type:              mediadb.MediaTypeMovie,
+					Description:       movie.Overview,
+					ReleaseDate:       releaseDate,
+					DurationInMinutes: movie.Runtime,
+					Source:            source,
+					Categories:        categories,
+					SourceID:          strconv.Itoa(i),
 				},
 				RelationsMedia: mediadb.RelationsMedia{
 					Assets: []mediadb.MediaImageModel{

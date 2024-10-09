@@ -3,10 +3,11 @@ import { Link } from "expo-router"
 import { useCallback, useState } from "react"
 import { Pressable, View } from "react-native"
 import { ChevronRightIcon } from "../../shared/components/icons/chevron-right-icon"
-import { UIBody } from "../../shared/components/typos/body"
 import { UIInfo } from "../../shared/components/typos/info"
+import { UISmallBody } from "../../shared/components/typos/small-body"
 import { UISmallTitle } from "../../shared/components/typos/small-title"
 import { createUseStyles } from "../../shared/theme/create-use-styles"
+import type { ApiImage } from "../../shared/types/api-image"
 
 interface SearchResultProps {
   id: string
@@ -15,12 +16,7 @@ interface SearchResultProps {
   isBestResult: boolean
   releaseDate: Date
   categories: string[]
-  image: {
-    url: string
-    thumbhash: string
-    width: number
-    height: number
-  }
+  image: ApiImage
 }
 
 export const SearchResult = (props: SearchResultProps) => {
@@ -54,13 +50,13 @@ export const SearchResult = (props: SearchResultProps) => {
           <UIInfo style={styles.info}>•</UIInfo>
           <UIInfo style={styles.info}>{props.categories.slice(0, 2).join(", ")}</UIInfo>
         </View>
-        <UIBody
+        <UISmallBody
           style={styles.description}
           numberOfLines={4}
           ellipsizeMode='tail'
         >
           {props.description}
-        </UIBody>
+        </UISmallBody>
       </View>
       <ChevronRightIcon style={styles.icon} />
     </Pressable>

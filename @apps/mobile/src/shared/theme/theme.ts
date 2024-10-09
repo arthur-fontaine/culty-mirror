@@ -7,6 +7,7 @@ const base: Omit<Theme[keyof Theme], 'colors'> = {
     horizontal: {
       screen: 24,
       icon: 12,
+      glued: 8,
       insideGroup: 16,
     },
     vertical: {
@@ -18,7 +19,9 @@ const base: Omit<Theme[keyof Theme], 'colors'> = {
     },
   },
   paddings: {
+    small: 8,
     medium: 16,
+    large: 24,
   },
   radius: {
     small: 8,
@@ -27,6 +30,7 @@ const base: Omit<Theme[keyof Theme], 'colors'> = {
   fontSizes: {
     small: 10,
     medium: 14,
+    large: 24,
   },
 };
 

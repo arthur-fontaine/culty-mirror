@@ -15,6 +15,10 @@ export const useMedia = (mediaId: string) => {
   const { data: media, isLoading: isMediaLoading } = useQuery({
     queryKey: ["media", mediaId],
     queryFn: () => createRoute(mediaService.getById)({ mediaId }),
+    select: (data) => ({
+      ...data,
+      releaseDate: new Date(data.releaseDate),
+    })
   });
 
   const QUERY_MEDIA_INTERACTIONS_KEY = ["media", "interactions", interactRequestParams];

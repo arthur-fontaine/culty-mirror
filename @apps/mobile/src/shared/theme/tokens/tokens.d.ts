@@ -4,6 +4,7 @@ export interface StyleTokens {
   colors: {
     background: ColorString;
     backgroundElement: ColorString;
+    backgroundSecondaryElement: ColorString;
     backgroundPressed: ColorString;
 
     primaryText: ColorString;
@@ -19,6 +20,7 @@ export interface StyleTokens {
     horizontal: {
       screen: number;
       icon: number;
+      glued: number;
       insideGroup: number;
     };
     vertical: {
@@ -31,7 +33,9 @@ export interface StyleTokens {
   };
 
   paddings: {
+    small: number;
     medium: number;
+    large: number;
   };
 
   radius: {
@@ -42,5 +46,6 @@ export interface StyleTokens {
   fontSizes: {
     small: number;
     medium: number;
+    large: number;
   };
 }

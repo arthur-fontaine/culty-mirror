@@ -2,7 +2,7 @@ import { Text } from "react-native";
 import { createUseStyles } from "../../theme/create-use-styles";
 import type { TypoProps } from "../../types/typo-props";
 
-export const UIBody = (props: TypoProps) => {
+export const UISmallBody = (props: TypoProps) => {
   const { styles } = useStyles();
 
   return <Text
@@ -17,7 +17,7 @@ export const UIBody = (props: TypoProps) => {
 const useStyles = createUseStyles((theme) => ({
   text: {
     fontWeight: 300,
-    fontSize: theme.fontSizes.medium,
-    lineHeight: theme.fontSizes.medium * 1.56,
+    fontSize: theme.fontSizes.small,
+    lineHeight: theme.fontSizes.small * 1.56,
   },
 }));

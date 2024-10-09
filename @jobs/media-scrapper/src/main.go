@@ -27,6 +27,7 @@ func main() {
 			mediadb.Media.Type.Set(media.Type),
 			mediadb.Media.Description.Set(media.Description),
 			mediadb.Media.ReleaseDate.Set(media.ReleaseDate),
+			mediadb.Media.DurationInMinutes.Set(media.DurationInMinutes),
 			mediadb.Media.Source.Set(media.Source),
 			mediadb.Media.SourceID.Set(media.SourceID),
 			mediadb.Media.Categories.Set(media.Categories),

@@ -17,13 +17,14 @@ model Media {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
   // Data
-  title       String
-  type        MediaType
-  description String
-  categories  String[]
-  releaseDate DateTime
-  source      String
-  sourceID    String
+  title             String
+  type              MediaType
+  description       String
+  categories        String[]
+  releaseDate       DateTime
+  durationInMinutes Int
+  source            String
+  sourceID          String
 
   // Relations
   assets MediaImage[]

@@ -18,7 +18,11 @@ types:
         fields:
           mediaId: string
           title: string
+          description: string
           images: list<Image>
+          releaseDate: string
+          durationInMinutes: integer
+          categories: list<string>
 
     errors:
       MediaNotFound:
