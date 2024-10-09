@@ -22,16 +22,21 @@ func main() {
 	}
 
 	for media := range utils.MergeChan(scrappers.ScrapTMDB(env, db)) {
-		createdMedia, err := db.Media.CreateOne(
-			mediadb.Media.Title.Set(media.Title),
-			mediadb.Media.Type.Set(media.Type),
-			mediadb.Media.Description.Set(media.Description),
-			mediadb.Media.ReleaseDate.Set(media.ReleaseDate),
-			mediadb.Media.DurationInMinutes.Set(media.DurationInMinutes),
-			mediadb.Media.Source.Set(media.Source),
-			mediadb.Media.SourceID.Set(media.SourceID),
-			mediadb.Media.Categories.Set(media.Categories),
-		).Exec(context.Background())
+		alreadyExistsMedia, _ := db.Media.
+			FindFirst(
+				mediadb.Media.And(
+					mediadb.Media.SourceID.Equals(media.SourceID),
+					mediadb.Media.Source.Equals(media.Source),
+				),
+			).
+			Select(mediadb.Media.ID.Field()).
+			Exec(context.Background())
+
+		alreadyExistsMediaID := ""
+		if alreadyExistsMedia != nil {
+			alreadyExistsMediaID = alreadyExistsMedia.ID
+		}
+		createdMedia, err := upsertMedia(db, alreadyExistsMediaID, media)
 
 		if err != nil {
 			log.Println("Failed to create media", err)
@@ -59,5 +64,37 @@ func main() {
 			log.Println("Failed to create media image", err)
 			continue
 		}
+	}
+}
+
+func upsertMedia(
+	db *mediadb.PrismaClient,
+	id string,
+	media mediadb.MediaModel,
+) (*mediadb.MediaModel, error) {
+	if id == "" {
+		return db.Media.
+			CreateOne(
+				mediadb.Media.Title.Set(media.Title),
+				mediadb.Media.Type.Set(media.Type),
+				mediadb.Media.Description.Set(media.Description),
+				mediadb.Media.ReleaseDate.Set(media.ReleaseDate),
+				mediadb.Media.DurationInMinutes.Set(media.DurationInMinutes),
+				mediadb.Media.Source.Set(media.Source),
+				mediadb.Media.SourceID.Set(media.SourceID),
+				mediadb.Media.Categories.Set(media.Categories),
+			).
+			Exec(context.Background())
+	} else {
+		return db.Media.
+			UpsertOne(mediadb.Media.ID.Equals(id)).
+			Update(
+				mediadb.Media.Title.Set(media.Title),
+				mediadb.Media.Description.Set(media.Description),
+				mediadb.Media.ReleaseDate.Set(media.ReleaseDate),
+				mediadb.Media.DurationInMinutes.Set(media.DurationInMinutes),
+				mediadb.Media.Categories.Set(media.Categories),
+			).
+			Exec(context.Background())
 	}
 }
