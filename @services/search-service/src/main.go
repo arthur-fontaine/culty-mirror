@@ -23,7 +23,7 @@ func (s *SearchService) Search(ctx context.Context, requestArg search.SearchRequ
 
 	searchParameters := &typesenseApi.SearchCollectionParams{
 		Q:       typesensePointer.String(requestArg.Query),
-		QueryBy: typesensePointer.String("title"),
+		QueryBy: typesensePointer.String("title,description"),
 	}
 
 	results, err := typesenseClient.Collection(env.MEDIA_TYPESENSE_MEDIA_COLLECTION_NAME).Documents().Search(context.Background(), searchParameters)
