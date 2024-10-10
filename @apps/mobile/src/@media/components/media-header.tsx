@@ -64,8 +64,8 @@ const DefaultInfos = (props: PosterHeaderProps) => {
 
 const useStyles = createUseStyles(theme => ({
   root: {
-    marginHorizontal: -theme.spacing.horizontal.screen,
-    marginTop: -theme.spacing.vertical.screen,
+    marginHorizontal: -theme.paddings.horizontalScreen,
+    marginTop: -theme.paddings.verticalScreen,
     position: "relative",
   },
   posterInfosWrapper: {
@@ -90,7 +90,7 @@ const useStyles = createUseStyles(theme => ({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: theme.spacing.horizontal.screen,
+    padding: theme.paddings.horizontalScreen,
     paddingBottom: 0,
   },
   title: {

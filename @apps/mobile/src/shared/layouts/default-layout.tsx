@@ -16,7 +16,7 @@ const useStyles = createUseStyles((theme) => ({
     backgroundColor: theme.colors.background,
     height: '100%',
     width: '100%',
-    paddingHorizontal: theme.spacing.horizontal.screen,
-    paddingTop: theme.spacing.vertical.screen,
+    paddingHorizontal: theme.paddings.horizontalScreen,
+    paddingTop: theme.paddings.verticalScreen,
   },
 }))

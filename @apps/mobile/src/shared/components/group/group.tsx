@@ -22,7 +22,7 @@ export const UIGroup = (props: React.PropsWithChildren<AutoSpacerProps>) => {
 
   const isVertical = props.vertical ?? !props.horizontal;
   const isHorizontal = props.horizontal ?? !props.vertical;
-  const flexDirection = isHorizontal ? "row" : "column";
+  const flexDirection = props.horizontal ? "row" : "column";
 
   return <View style={{
     rowGap: isVertical ? spaceValue : 0,

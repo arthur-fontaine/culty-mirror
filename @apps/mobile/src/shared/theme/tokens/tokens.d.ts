@@ -15,27 +15,11 @@ export interface StyleTokens {
     placeholderIcon: ColorString;
   };
 
-  // https://wise.design/foundations/spacing#semantic-tokens
-  spacing: {
-    horizontal: {
-      screen: number;
-      icon: number;
-      glued: number;
-      insideGroup: number;
-    };
-    vertical: {
-      screen: number;
-      glued: number;
-      insideGroup: number;
-      betweenDifferentElements: number;
-      beforeTextBody: number;
-    };
-  };
-
   paddings: {
-    small: number;
-    medium: number;
-    large: number;
+    aroundIcon: number;
+    horizontalScreen: number;
+    verticalScreen: number;
+    insideInput: number;
   };
 
   radius: {

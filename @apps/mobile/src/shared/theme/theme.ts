@@ -3,25 +3,11 @@ import { darkColors } from "./tokens/dark-colors";
 import { lightColors } from "./tokens/light-colors";
 
 const base: Omit<Theme[keyof Theme], 'colors'> = {
-  spacing: {
-    horizontal: {
-      screen: 24,
-      icon: 12,
-      glued: 8,
-      insideGroup: 16,
-    },
-    vertical: {
-      screen: 24,
-      glued: 4,
-      beforeTextBody: 12,
-      insideGroup: 24,
-      betweenDifferentElements: 48,
-    },
-  },
   paddings: {
-    small: 8,
-    medium: 16,
-    large: 24,
+    aroundIcon: 12,
+    horizontalScreen: 24,
+    verticalScreen: 24,
+    insideInput: 16,
   },
   radius: {
     small: 8,

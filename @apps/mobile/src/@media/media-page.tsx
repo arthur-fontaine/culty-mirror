@@ -1,8 +1,8 @@
 import { Text, View } from "react-native"
-import { AutoSpacer"../shared/components/grgrgrgrgroup/spacer
-import { UIIconButton } from "../shared/components/iconbutton
-import { BookmarkIconconconconcon } from "../shared/compobookmarkokmarkokmarkokmarkokmark-icon"
-import { CheckIconrom "../shared/components/iiiiiconsccheck-iconconconconcon"
+import { UIGroup } from "../shared/components/group/group"
+import { UIIconButton } from "../shared/components/icon-button"
+import { BookmarkIcon } from "../shared/components/icons/bookmark-icon"
+import { CheckIcon } from "../shared/components/icons/check-icon"
 import { UIBody } from "../shared/components/typos/body"
 import { DefaultLayout } from "../shared/layouts/default-layout"
 import { createUseStyles } from "../shared/theme/create-use-styles"
@@ -30,7 +30,7 @@ export const MediaPage = (params: MediaPageParams) => {
   }
 
   return <DefaultLayout>
-    <AutoSpacer>
+    <UIGroup>
       <MediaHeader
         {...media}
         image={media.images[0]}
@@ -78,13 +78,12 @@ export const MediaPage = (params: MediaPageParams) => {
           }}
         />
       ))} */}
-    </AutoSpacer>
+    </UIGroup>
   </DefaultLayout>
 }
 
 const useStyles = createUseStyles((theme) => ({
   description: {
     color: theme.colors.secondaryText,
-    // marginTop: theme.spacing.vertical.betweenDifferentElements,
   },
 }))

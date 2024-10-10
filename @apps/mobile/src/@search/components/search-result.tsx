@@ -1,7 +1,7 @@
 import { Image } from "expo-image"
 import { Link } from "expo-router"
-import { useCallback, useState } from "react"
-import { Pressable, View } from "react-native"
+import { Pressable } from "react-native"
+import { UIGroup } from "../../shared/components/group/group"
 import { ChevronRightIcon } from "../../shared/components/icons/chevron-right-icon"
 import { UIInfo } from "../../shared/components/typos/info"
 import { UISmallBody } from "../../shared/components/typos/small-body"
@@ -22,55 +22,39 @@ interface SearchResultProps {
 export const SearchResult = (props: SearchResultProps) => {
   const { styles } = useStyles()
 
-  const [isPressed, setIsPressed] = useState(false)
-  const handlePressIn = useCallback(() => setIsPressed(true), [])
-  const handlePressOut = useCallback(() => setIsPressed(false), [])
-
   return <Link href={`/medias/${props.id}`} asChild push>
-    <Pressable
-      onPressIn={handlePressIn}
-      onPressOut={handlePressOut}
-      style={{
-        ...styles.searchResultContainer,
-        ...(isPressed && styles.searchResultContainerPressed),
-      }}
-    >
-      <Image
-        placeholder={{ thumbhash: props.image.thumbhash }}
-        source={{ uri: props.image.url }}
-        style={{
-          ...styles.image,
-          aspectRatio: props.image.width / props.image.height
-        }}
-      />
-      <View style={{ flex: 1 }}>
-        <UISmallTitle style={styles.title}>{props.title}</UISmallTitle>
-        <View style={styles.infosContainer}>
-          <UIInfo style={styles.info}>{props.releaseDate.getFullYear()}</UIInfo>
-          <UIInfo style={styles.info}>•</UIInfo>
-          <UIInfo style={styles.info}>{props.categories.slice(0, 2).join(", ")}</UIInfo>
-        </View>
-        <UISmallBody
-          style={styles.description}
-          numberOfLines={4}
-          ellipsizeMode='tail'
-        >
-          {props.description}
-        </UISmallBody>
-      </View>
-      <ChevronRightIcon style={styles.icon} />
+    <Pressable>
+      <UIGroup horizontal>
+        <Image
+          placeholder={{ thumbhash: props.image.thumbhash }}
+          source={{ uri: props.image.url }}
+          style={{
+            ...styles.image,
+            aspectRatio: props.image.width / props.image.height
+          }}
+        />
+        <UIGroup style={{ flex: 1 }}>
+          <UISmallTitle style={styles.title}>{props.title}</UISmallTitle>
+          <UIGroup horizontal>
+            <UIInfo style={styles.info}>{props.releaseDate.getFullYear()}</UIInfo>
+            <UIInfo style={styles.info}>•</UIInfo>
+            <UIInfo style={styles.info}>{props.categories.slice(0, 2).join(", ")}</UIInfo>
+          </UIGroup>
+          <UISmallBody
+            numberOfLines={4}
+            ellipsizeMode='tail'
+            style={styles.description}
+          >
+            {props.description}
+          </UISmallBody>
+        </UIGroup>
+        <ChevronRightIcon style={styles.icon} />
+      </UIGroup>
     </Pressable>
   </Link>
 }
 
 const useStyles = createUseStyles((theme) => ({
-  searchResultContainer: {
-    flexDirection: "row",
-    gap: theme.spacing.horizontal.insideGroup,
-    marginHorizontal: -theme.spacing.horizontal.screen,
-    paddingHorizontal: theme.spacing.horizontal.screen,
-    paddingVertical: theme.spacing.vertical.insideGroup / 2,
-  },
   searchResultContainerPressed: {
     backgroundColor: theme.colors.backgroundPressed,
   },
@@ -80,23 +64,17 @@ const useStyles = createUseStyles((theme) => ({
   },
   title: {
     color: theme.colors.primaryText,
-    marginBottom: theme.spacing.vertical.glued,
   },
   info: {
     color: theme.colors.secondaryText,
   },
-  infosContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 4,
-  },
   description: {
     color: theme.colors.secondaryText,
-    marginTop: theme.spacing.vertical.beforeTextBody,
   },
   icon: {
     marginVertical: "auto",
     color: theme.colors.secondaryText,
     size: 16,
+    padding: theme.paddings.aroundIcon,
   },
 }))

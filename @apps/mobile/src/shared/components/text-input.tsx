@@ -1,6 +1,6 @@
 import type React from "react";
 import { useCallback, useRef } from "react";
-import { Pressable, TextInput, type TextInputProps, TouchableWithoutFeedback, View } from "react-native"
+import { Pressable, TextInput, type TextInputProps, View } from "react-native"
 import { createUseStyles } from "../theme/create-use-styles";
 import type { IconProps } from "../types/icon-props";
 
@@ -41,14 +41,14 @@ const useStyles = createUseStyles((theme) => ({
     cursor: 'text' as never,
     backgroundColor: theme.colors.backgroundElement,
     borderRadius: theme.radius.medium,
-    padding: theme.paddings.medium,
+    padding: theme.paddings.insideInput,
     flexDirection: 'row',
     alignItems: 'center',
   },
   icon: {
     color: theme.colors.placeholderIcon,
     size: 24,
-    marginRight: theme.spacing.horizontal.icon,
+    marginRight: theme.paddings.aroundIcon,
   },
   textInput: {
     color: theme.colors.textInElement,
