@@ -62,6 +62,10 @@ func (m *MediaInteractionsService) upsertInteraction(
 func (m *MediaInteractionsService) GetInteractions(ctx context.Context, requestArg mediainteractions.GetInteractionsRequest) (mediainteractions.GetInteractionsResponse, error) {
 	mediaInteraction, err := m.getMediaInteraction(ctx, requestArg.UserId, requestArg.MediaId)
 
+	if errors.Is(err, mediaInteractionsDb.ErrNotFound) {
+		return mediainteractions.GetInteractionsResponse{}, nil
+	}
+
 	if err != nil {
 		return mediainteractions.GetInteractionsResponse{}, err
 	}
@@ -88,11 +92,10 @@ func (m *MediaInteractionsService) Bookmark(ctx context.Context, requestArg medi
 		return err
 	}
 
-	_, ratingExists := mediaInteraction.Rating()
-	if mediaInteraction.Consumed ||
-		ratingExists ||
-		mediaInteraction.Favorite {
-		return mediainteractions.NewActionImpossible()
+	if mediaInteraction != nil {
+		if _, ratingExists := mediaInteraction.Rating(); mediaInteraction.Consumed || ratingExists || mediaInteraction.Favorite {
+			return mediainteractions.NewActionImpossible()
+		}
 	}
 
 	m.upsertInteraction(
@@ -138,7 +141,7 @@ func (m *MediaInteractionsService) Consume(ctx context.Context, requestArg media
 		return err
 	}
 
-	if mediaInteraction.Consumed {
+	if mediaInteraction != nil && mediaInteraction.Consumed {
 		return mediainteractions.NewActionImpossible()
 	}
 
@@ -184,7 +187,7 @@ func (m *MediaInteractionsService) Favorite(ctx context.Context, requestArg medi
 		return err
 	}
 
-	if !mediaInteraction.Consumed {
+	if mediaInteraction != nil && !mediaInteraction.Consumed {
 		return mediainteractions.NewActionImpossible()
 	}
 
@@ -229,7 +232,7 @@ func (m *MediaInteractionsService) Rate(ctx context.Context, requestArg mediaint
 		return err
 	}
 
-	if !mediaInteraction.Consumed {
+	if mediaInteraction != nil && !mediaInteraction.Consumed {
 		return mediainteractions.NewActionImpossible()
 	}
 
