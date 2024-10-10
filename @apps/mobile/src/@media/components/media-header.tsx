@@ -44,7 +44,7 @@ const DefaultInfos = (props: PosterHeaderProps) => {
       />
       <View style={styles.header}>
 
-        <UIGroup>
+        <UIGroup style={{ flex: 1 }}>
           <UITitle style={styles.title}>{props.title}</UITitle>
           <UIGroup horizontal>
             <UIInfo style={styles.info}>{Math.floor(props.durationInMinutes / 60)}h{(props.durationInMinutes % 60).toString().padStart(2, "0")}</UIInfo>
@@ -53,7 +53,7 @@ const DefaultInfos = (props: PosterHeaderProps) => {
           </UIGroup>
         </UIGroup>
 
-        <UIGroup horizontal>
+        <UIGroup horizontal style={styles.actions}>
           {props.buttons}
         </UIGroup>
 
@@ -92,6 +92,9 @@ const useStyles = createUseStyles(theme => ({
     alignItems: "center",
     padding: theme.paddings.horizontalScreen,
     paddingBottom: 0,
+  },
+  actions: {
+    marginLeft: theme.paddings.aroundIcon,
   },
   title: {
     color: theme.colors.primaryText,

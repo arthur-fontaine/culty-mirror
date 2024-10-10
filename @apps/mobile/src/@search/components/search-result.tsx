@@ -34,11 +34,13 @@ export const SearchResult = (props: SearchResultProps) => {
           }}
         />
         <UIGroup style={{ flex: 1 }}>
-          <UISmallTitle style={styles.title}>{props.title}</UISmallTitle>
-          <UIGroup horizontal>
-            <UIInfo style={styles.info}>{props.releaseDate.getFullYear()}</UIInfo>
-            <UIInfo style={styles.info}>•</UIInfo>
-            <UIInfo style={styles.info}>{props.categories.slice(0, 2).join(", ")}</UIInfo>
+          <UIGroup>
+            <UISmallTitle style={styles.title}>{props.title}</UISmallTitle>
+            <UIGroup horizontal>
+              <UIInfo style={styles.info}>{props.releaseDate.getFullYear()}</UIInfo>
+              <UIInfo style={styles.info}>•</UIInfo>
+              <UIInfo style={styles.info}>{props.categories.slice(0, 2).join(", ")}</UIInfo>
+            </UIGroup>
           </UIGroup>
           <UISmallBody
             numberOfLines={4}
