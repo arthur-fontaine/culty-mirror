@@ -7,7 +7,7 @@ const base: Omit<Theme[keyof Theme], 'colors'> = {
     aroundIcon: 12,
     horizontalScreen: 24,
     verticalScreen: 24,
-    insideInput: 16,
+    insideInput: 12,
   },
   radius: {
     small: 8,
@@ -17,7 +17,7 @@ const base: Omit<Theme[keyof Theme], 'colors'> = {
     info: 12,
     smallBody: 13,
     body: 14,
-    smallTitle: 14,
+    smallTitle: 16,
     title: 24,
   },
 };

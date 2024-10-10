@@ -6,9 +6,11 @@ export const darkColors: StyleTokens['colors'] = {
   secondaryElementBackground: '#302E33',
   primaryElementText: '#000000',
   primaryText: '#FFFFFF',
-  secondaryText: '#A3A3A4',
+  secondaryText: '#D6D6D6',
+  tertiaryText: '#A3A3A4',
   placeholderText: '#5A585C',
   placeholderIcon: '#6D6B6F',
   valid: '#1E9D4F',
   like: '#CB3737',
+  star: '#FFD700',
 }

@@ -8,6 +8,7 @@ export const HeartIcon = ({ filled, ...props }: IconProps) => {
       width={props.style.size}
       height={props.style.size}
       viewBox="0 0 16 16"
+      {...props}
     >
       {
         filled ?

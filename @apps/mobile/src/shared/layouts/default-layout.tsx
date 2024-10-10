@@ -7,7 +7,6 @@ export const DefaultLayout = (props: PropsWithChildren) => {
 
   return <ScrollView style={styles.view}>
     {props.children}
-    <View style={{ height: styles.view.paddingTop }} /> {/* To make sure the content is spaced at the bottom */}
   </ScrollView>;
 }
 
@@ -18,5 +17,6 @@ const useStyles = createUseStyles((theme) => ({
     width: '100%',
     paddingHorizontal: theme.paddings.horizontalScreen,
     paddingTop: theme.paddings.verticalScreen,
+    paddingBottom: theme.paddings.verticalScreen * 2,
   },
 }))

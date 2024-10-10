@@ -23,8 +23,8 @@ export const SearchResult = (props: SearchResultProps) => {
   const { styles } = useStyles()
 
   return <Link href={`/medias/${props.id}`} asChild push>
-    <Pressable>
-      <UIGroup horizontal>
+    <Pressable style={{ flex: 1 }}>
+      <UIGroup vertical>
         <Image
           placeholder={{ thumbhash: props.image.thumbhash }}
           source={{ uri: props.image.url }}
@@ -34,23 +34,13 @@ export const SearchResult = (props: SearchResultProps) => {
           }}
         />
         <UIGroup style={{ flex: 1 }}>
-          <UIGroup>
-            <UISmallTitle style={styles.title}>{props.title}</UISmallTitle>
-            <UIGroup horizontal>
-              <UIInfo style={styles.info}>{props.releaseDate.getFullYear()}</UIInfo>
-              <UIInfo style={styles.info}>•</UIInfo>
-              <UIInfo style={styles.info}>{props.categories.slice(0, 2).join(", ")}</UIInfo>
-            </UIGroup>
+          <UISmallTitle style={styles.title}>{props.title}</UISmallTitle>
+          <UIGroup horizontal>
+            <UIInfo style={styles.info}>{props.releaseDate.getFullYear()}</UIInfo>
+            <UIInfo style={styles.info}>•</UIInfo>
+            <UIInfo style={styles.info}>{props.categories.slice(0, 2).join(", ")}</UIInfo>
           </UIGroup>
-          <UISmallBody
-            numberOfLines={4}
-            ellipsizeMode='tail'
-            style={styles.description}
-          >
-            {props.description}
-          </UISmallBody>
         </UIGroup>
-        <ChevronRightIcon style={styles.icon} />
       </UIGroup>
     </Pressable>
   </Link>
@@ -58,17 +48,18 @@ export const SearchResult = (props: SearchResultProps) => {
 
 const useStyles = createUseStyles((theme) => ({
   image: {
-    width: 75,
+    width: '100%',
     borderRadius: theme.radius.small,
   },
   title: {
     color: theme.colors.primaryText,
   },
   info: {
-    color: theme.colors.secondaryText,
+    color: theme.colors.tertiaryText,
   },
   description: {
-    color: theme.colors.secondaryText,
+    color: theme.colors.primaryText,
+    lineHeight: theme.fontSizes.body * 1.35,
   },
   icon: {
     marginVertical: "auto",

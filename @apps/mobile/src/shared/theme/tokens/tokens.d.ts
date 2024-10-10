@@ -8,6 +8,7 @@ export interface StyleTokens {
 
     primaryText: ColorString;
     secondaryText: ColorString;
+    tertiaryText: ColorString;
     primaryElementText: ColorString;
 
     placeholderText: ColorString;
@@ -15,6 +16,7 @@ export interface StyleTokens {
 
     valid: ColorString;
     like: ColorString;
+    star: ColorString;
   };
 
   paddings: {

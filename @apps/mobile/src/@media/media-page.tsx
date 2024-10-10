@@ -8,6 +8,7 @@ import { UIBody } from "../shared/components/typos/body"
 import { DefaultLayout } from "../shared/layouts/default-layout"
 import { createUseStyles } from "../shared/theme/create-use-styles"
 import { MediaHeader } from "./components/media-header"
+import { MediaStarsSelector } from "./components/media-stars-selector"
 import { useMedia } from "./hooks/use-media"
 
 interface MediaPageParams {
@@ -57,37 +58,10 @@ export const MediaPage = (params: MediaPageParams) => {
           />
         ]}
       />
+
+      {media.interactions?.consumed && <MediaStarsSelector media={media} />}
+
       <UIBody style={styles.description}>{media.description}</UIBody>
-
-      {/* <Button
-        title={media.interactions?.favorited ? "Unfavorite" : "Favorite"}
-        onPress={media.toggleFavorite}
-      />
-
-      <Button
-        title={media.interactions?.bookmarked ? "Unbookmark" : "Bookmark"}
-        onPress={media.toggleBookmark}
-      />
-
-      <Button
-        title={media.interactions?.consumed ? "Unconsume" : "Consume"}
-        onPress={media.toggleConsume}
-      />
-
-      {new Array(5).fill(null).map((_, index) => (
-        <Button
-          // biome-ignore lint/suspicious/noArrayIndexKey: Index is safe here
-          key={`rate-${index}`}
-          title={`Rate ${index + 1}`}
-          onPress={() => {
-            if (media.interactions?.rating === index + 1) {
-              media.rate(undefined)
-              return
-            }
-            media.rate(index + 1)
-          }}
-        />
-      ))} */}
     </UIGroup>
   </DefaultLayout>
 }

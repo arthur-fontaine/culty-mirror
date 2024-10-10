@@ -100,7 +100,7 @@ const useStyles = createUseStyles(theme => ({
     color: theme.colors.primaryText,
   },
   info: {
-    color: theme.colors.secondaryText,
+    color: theme.colors.tertiaryText,
   },
 }))
 

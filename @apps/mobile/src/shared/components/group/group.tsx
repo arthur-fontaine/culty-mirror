@@ -36,15 +36,15 @@ export const UIGroup = (props: React.PropsWithChildren<AutoSpacerProps>) => {
   </View>;
 };
 
-export const Spacer = (props: React.PropsWithChildren<
+export const Spacer = (props:
   | { horizontal: true, vertical?: false | undefined }
   | { horizontal?: false | undefined, vertical: true }
->) => {
-  const spaceValue = useSpaceValue();
+) => {
+  const { previousValue } = useContext(SpacerContext);
 
   return <View style={{
-    width: props.horizontal ? spaceValue : 0,
-    height: props.vertical ? spaceValue : 0,
+    width: props.horizontal ? previousValue : 0,
+    height: props.vertical ? previousValue : 0,
   }} />;
 }
 
