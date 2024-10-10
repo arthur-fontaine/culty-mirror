@@ -5,6 +5,7 @@ import type React from 'react';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { FiboSpacerProvider } from '../shared/components/group/fibo-spacer-provider';
 import { ThemeProvider, useTheme } from '../shared/theme/theme-context';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -16,9 +17,11 @@ export default function RootLayout() {
   return (
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
-        <WaitLoading>
-          <Slot />
-        </WaitLoading>
+        <FiboSpacerProvider startAtNthValue={9}>
+          <WaitLoading>
+            <Slot />
+          </WaitLoading>
+        </FiboSpacerProvider>
       </QueryClientProvider>
     </ThemeProvider>
   );

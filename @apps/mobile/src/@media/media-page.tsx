@@ -1,13 +1,12 @@
-import { Image } from "expo-image"
-import { Button, Text, View } from "react-native"
-import { UIIconButton } from "../shared/components/icon-button"
-import { BookmarkIcon } from "../shared/components/icons/bookmark-icon"
-import { CheckIcon } from "../shared/components/icons/check-icon"
+import { Text, View } from "react-native"
+import { AutoSpacer"../shared/components/grgrgrgrgroup/spacer
+import { UIIconButton } from "../shared/components/iconbutton
+import { BookmarkIconconconconcon } from "../shared/compobookmarkokmarkokmarkokmarkokmark-icon"
+import { CheckIconrom "../shared/components/iiiiiconsccheck-iconconconconcon"
 import { UIBody } from "../shared/components/typos/body"
-import { UISmallBody } from "../shared/components/typos/small-body"
 import { DefaultLayout } from "../shared/layouts/default-layout"
 import { createUseStyles } from "../shared/theme/create-use-styles"
-import { PosterHeader } from "./components/poster-header"
+import { MediaHeader } from "./components/media-header"
 import { useMedia } from "./hooks/use-media"
 
 interface MediaPageParams {
@@ -31,8 +30,8 @@ export const MediaPage = (params: MediaPageParams) => {
   }
 
   return <DefaultLayout>
-    <View>
-      <PosterHeader
+    <AutoSpacer>
+      <MediaHeader
         {...media}
         image={media.images[0]}
         buttons={[
@@ -79,13 +78,13 @@ export const MediaPage = (params: MediaPageParams) => {
           }}
         />
       ))} */}
-    </View>
+    </AutoSpacer>
   </DefaultLayout>
 }
 
 const useStyles = createUseStyles((theme) => ({
   description: {
     color: theme.colors.secondaryText,
-    marginTop: theme.spacing.vertical.betweenDifferentElements,
+    // marginTop: theme.spacing.vertical.betweenDifferentElements,
   },
 }))
