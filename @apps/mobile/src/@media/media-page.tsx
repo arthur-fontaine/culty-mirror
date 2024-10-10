@@ -14,7 +14,7 @@ interface MediaPageParams {
 }
 
 export const MediaPage = (params: MediaPageParams) => {
-  const { styles } = useStyles()
+  const { styles, theme } = useStyles()
   const { media, isLoading } = useMedia(params.mediaId)
 
   if (isLoading) {
@@ -39,11 +39,13 @@ export const MediaPage = (params: MediaPageParams) => {
             key="favorite"
             icon={BookmarkIcon}
             onPress={media.toggleBookmark}
+            filled={media.interactions?.bookmarked ?? false}
           />,
           <UIIconButton
             key="consume"
             icon={CheckIcon}
             onPress={media.toggleConsume}
+            style={media.interactions?.consumed && { backgroundColor: theme.colors.valid }}
           />
         ]}
       />

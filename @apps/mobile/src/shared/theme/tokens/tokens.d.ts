@@ -12,6 +12,8 @@ export interface StyleTokens {
 
     placeholderText: ColorString;
     placeholderIcon: ColorString;
+
+    valid: ColorString;
   };
 
   paddings: {
