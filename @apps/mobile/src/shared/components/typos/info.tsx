@@ -17,6 +17,6 @@ export const UIInfo = (props: TypoProps) => {
 const useStyles = createUseStyles((theme) => ({
   text: {
     fontWeight: 500,
-    fontSize: theme.fontSizes.small,
+    fontSize: theme.fontSizes.info,
   },
 }));

@@ -17,7 +17,7 @@ export const UISmallBody = (props: TypoProps) => {
 const useStyles = createUseStyles((theme) => ({
   text: {
     fontWeight: 300,
-    fontSize: theme.fontSizes.small,
-    lineHeight: theme.fontSizes.small * 1.56,
+    fontSize: theme.fontSizes.smallBody,
+    lineHeight: theme.fontSizes.smallBody * 1.56,
   },
 }));

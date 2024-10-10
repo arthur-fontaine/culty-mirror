@@ -3,13 +3,12 @@ type ColorString = `#${string}`;
 export interface StyleTokens {
   colors: {
     background: ColorString;
-    backgroundElement: ColorString;
-    backgroundSecondaryElement: ColorString;
-    backgroundPressed: ColorString;
+    primaryElementBackground: ColorString;
+    secondaryElementBackground: ColorString;
 
     primaryText: ColorString;
     secondaryText: ColorString;
-    textInElement: ColorString;
+    primaryElementText: ColorString;
 
     placeholderText: ColorString;
     placeholderIcon: ColorString;
@@ -28,8 +27,10 @@ export interface StyleTokens {
   };
 
   fontSizes: {
-    small: number;
-    medium: number;
-    large: number;
+    smallBody: number;
+    info: number;
+    body: number;
+    smallTitle: number;
+    title: number;
   };
 }

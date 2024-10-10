@@ -55,9 +55,6 @@ export const SearchResult = (props: SearchResultProps) => {
 }
 
 const useStyles = createUseStyles((theme) => ({
-  searchResultContainerPressed: {
-    backgroundColor: theme.colors.backgroundPressed,
-  },
   image: {
     width: 75,
     borderRadius: theme.radius.small,

@@ -14,9 +14,11 @@ const base: Omit<Theme[keyof Theme], 'colors'> = {
     medium: 12,
   },
   fontSizes: {
-    small: 10,
-    medium: 14,
-    large: 24,
+    info: 12,
+    smallBody: 13,
+    body: 14,
+    smallTitle: 14,
+    title: 24,
   },
 };
 

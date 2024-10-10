@@ -17,7 +17,7 @@ export const UIBody = (props: TypoProps) => {
 const useStyles = createUseStyles((theme) => ({
   text: {
     fontWeight: 300,
-    fontSize: theme.fontSizes.medium,
-    lineHeight: theme.fontSizes.medium * 1.56,
+    fontSize: theme.fontSizes.body,
+    lineHeight: theme.fontSizes.body * 1.56,
   },
 }));

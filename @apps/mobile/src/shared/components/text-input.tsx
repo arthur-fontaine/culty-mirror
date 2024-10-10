@@ -39,7 +39,7 @@ export const UITextInput = (props: UITextInputProps) => {
 const useStyles = createUseStyles((theme) => ({
   wrapper: {
     cursor: 'text' as never,
-    backgroundColor: theme.colors.backgroundElement,
+    backgroundColor: theme.colors.primaryElementBackground,
     borderRadius: theme.radius.medium,
     padding: theme.paddings.insideInput,
     flexDirection: 'row',
@@ -51,9 +51,9 @@ const useStyles = createUseStyles((theme) => ({
     marginRight: theme.paddings.aroundIcon,
   },
   textInput: {
-    color: theme.colors.textInElement,
+    color: theme.colors.primaryElementText,
     placeholderColor: theme.colors.placeholderIcon,
-    fontSize: theme.fontSizes.medium,
+    fontSize: theme.fontSizes.body,
     fontWeight: 600,
     outlineStyle: 'none',
     height: '100%',

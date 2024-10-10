@@ -17,6 +17,6 @@ export const UITitle = (props: TypoProps) => {
 const useStyles = createUseStyles((theme) => ({
   text: {
     fontWeight: 600,
-    fontSize: theme.fontSizes.large,
+    fontSize: theme.fontSizes.title,
   },
 }));

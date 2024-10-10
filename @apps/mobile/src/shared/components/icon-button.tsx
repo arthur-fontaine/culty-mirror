@@ -20,7 +20,7 @@ export const UIIconButton = (props: IconButtonProps) => {
 const useStyles = createUseStyles(theme => ({
   iconWrapper: {
     padding: theme.paddings.aroundIcon,
-    backgroundColor: theme.colors.backgroundSecondaryElement,
+    backgroundColor: theme.colors.secondaryElementBackground,
     borderRadius: 9999,
   },
   icon: {
