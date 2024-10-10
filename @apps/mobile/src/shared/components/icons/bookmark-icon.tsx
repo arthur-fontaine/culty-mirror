@@ -3,7 +3,7 @@ import Svg, { Path } from "react-native-svg"
 import type { IconProps } from "../../types/icon-props"
 
 
-export const BookmarkIcon = (props: IconProps) => (
+export const BookmarkIcon = ({ filled, ...props }: IconProps) => (
   <Svg
     width={props.style.size}
     height={props.style.size}
@@ -12,7 +12,7 @@ export const BookmarkIcon = (props: IconProps) => (
     {...props}
   >
     {
-      props.filled ?
+      filled ?
         <Path
           fill={props.style.color}
           d="M3 2.75C3 1.784 3.784 1 4.75 1h6.5c.966 0 1.75.784 1.75 1.75v11.5a.75.75 0 0 1-1.227.579L8 11.722l-3.773 3.107A.75.75 0 0 1 3 14.25z"

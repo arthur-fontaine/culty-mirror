@@ -10,4 +10,5 @@ export const darkColors: StyleTokens['colors'] = {
   placeholderText: '#5A585C',
   placeholderIcon: '#6D6B6F',
   valid: '#1E9D4F',
+  like: '#CB3737',
 }

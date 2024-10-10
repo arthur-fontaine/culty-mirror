@@ -3,6 +3,7 @@ import { UIGroup } from "../shared/components/group/group"
 import { UIIconButton } from "../shared/components/icon-button"
 import { BookmarkIcon } from "../shared/components/icons/bookmark-icon"
 import { CheckIcon } from "../shared/components/icons/check-icon"
+import { HeartIcon } from "../shared/components/icons/heart-icon"
 import { UIBody } from "../shared/components/typos/body"
 import { DefaultLayout } from "../shared/layouts/default-layout"
 import { createUseStyles } from "../shared/theme/create-use-styles"
@@ -35,11 +36,18 @@ export const MediaPage = (params: MediaPageParams) => {
         {...media}
         image={media.images[0]}
         buttons={[
-          <UIIconButton
-            key="favorite"
+          !media.interactions?.consumed && <UIIconButton
+            key="bookmark"
             icon={BookmarkIcon}
             onPress={media.toggleBookmark}
             filled={media.interactions?.bookmarked ?? false}
+          />,
+          media.interactions?.consumed && <UIIconButton
+            key="favorite"
+            icon={HeartIcon}
+            onPress={media.toggleFavorite}
+            filled={media.interactions?.favorited ?? false}
+            style={media.interactions?.favorited && { backgroundColor: theme.colors.like }}
           />,
           <UIIconButton
             key="consume"

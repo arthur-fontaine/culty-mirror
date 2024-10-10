@@ -2,7 +2,7 @@ import * as React from "react"
 import Svg, { Path } from "react-native-svg"
 import type { IconProps } from "../../types/icon-props"
 
-export const ChevronRightIcon = (props: IconProps) => (
+export const ChevronRightIcon = ({ filled, ...props }: IconProps) => (
   <Svg
     width={props.style.size}
     height={props.style.size}
