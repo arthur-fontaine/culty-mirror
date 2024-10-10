@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from "react";
-import { ScrollView, View } from "react-native";
+import { ScrollView } from "react-native";
 import { createUseStyles } from "../theme/create-use-styles";
 
 export const DefaultLayout = (props: PropsWithChildren) => {
