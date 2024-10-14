@@ -1,0 +1,41 @@
+types:
+  definitions:
+    default-package: com.culty.services.auth
+
+    objects:
+      LoginEmailPasswordRequest:
+        fields:
+          email: string
+          password: string
+
+      SignUpEmailPasswordRequest:
+        fields:
+          email: string
+          password: string
+
+      LoginResponse:
+        fields:
+          userId: string
+          userToken: string
+
+    errors:
+      BadCredentials:
+        namespace: AuthService
+        code: PERMISSION_DENIED
+
+services:
+  AuthService:
+    name: AuthService
+    package: com.culty.services.auth
+    endpoints:
+      loginEmailPassword:
+        http: POST /loginEmailPassword
+        args:
+          request: LoginEmailPasswordRequest
+        returns: LoginResponse
+
+      signUpEmailPassword:
+        http: POST /signUpEmailPassword
+        args:
+          request: SignUpEmailPasswordRequest
+        returns: LoginResponse

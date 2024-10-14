@@ -42,7 +42,7 @@ class ConjureServerBridge implements IHttpApiBridge {
 
     const honoRegisterFn = this.getHonoRegisterFn(parameters);
     honoRegisterFn(parameters.endpointPath, async (c) => {
-      const data = await c.req.parseBody();
+      const data = await c.req.json();
       const result = await parameters.data(data);
       return c.text(this.encode(result, parameters.responseMediaType ?? MediaType.APPLICATION_JSON));
     })

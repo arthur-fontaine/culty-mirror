@@ -19,10 +19,24 @@
   "type": "module",
   "tshy": {
     "exports": {
-      "./package.json": "./package.json"
+      "./package.json": "./package.json",
+      ".": "./src/main.ts"
     }
   },
   "exports": {
-    "./package.json": "./package.json"
-  }
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "types": "./dist/esm/main.d.ts",
+        "default": "./dist/esm/main.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/main.d.ts",
+        "default": "./dist/commonjs/main.js"
+      }
+    }
+  },
+  "main": "./dist/commonjs/main.js",
+  "types": "./dist/commonjs/main.d.ts",
+  "module": "./dist/esm/main.js"
 }

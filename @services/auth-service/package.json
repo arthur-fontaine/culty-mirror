@@ -1,0 +1,26 @@
+{
+  "name": "@culty/auth-service",
+  "version": "0.0.0",
+  "main": "./types/typescript/index.ts",
+  "scripts": {
+    "build": "sh ./scripts/generate.sh",
+    "generate-st-client": "sh ./scripts/generate-st-client.sh",
+    "predev": "pnpm prestart",
+    "dev": "tsx watch ./src/main.ts",
+    "prestart": "pnpm generate-st-client",
+    "start": "tsx ./src/main.ts"
+  },
+  "dependencies": {
+    "@culty/ts-utils": "workspace:*",
+    "@hono/node-server": "^1.13.2",
+    "conjure-client": "^2.11.0",
+    "conjure-ts-server": "workspace:*",
+    "hono": "^4.6.4"
+  },
+  "devDependencies": {
+    "@culty/tsconfig": "workspace:*",
+    "openapi-typescript": "^7.4.1",
+    "openapi-fetch": "^0.12.2",
+    "tsx": "^4.19.1"
+  }
+}

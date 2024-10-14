@@ -30,7 +30,7 @@ const envSchema = z.object({
   ASSETS_UPLOAD_SERVICE_PORT: z.coerce.number(),
   SUPER_TOKENS_PORT: z.coerce.number(),
   SUPER_TOKENS_DB_PORT: z.coerce.number(),
-  SUPER_TOKENS_SERVICE_PORT: z.coerce.number(),
+  AUTH_SERVICE_PORT: z.coerce.number(),
 
   ASSETS_URL: z.string(),
 });
