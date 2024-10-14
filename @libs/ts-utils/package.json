@@ -1,0 +1,40 @@
+{
+  "name": "@culty/ts-utils",
+  "version": "0.0.0",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tshy"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@culty/tsconfig": "workspace:*",
+    "tshy": "^3.0.2"
+  },
+  "type": "module",
+  "tshy": {
+    "exports": {
+      ".": "./src/utils.ts",
+      "./package.json": "./package.json"
+    }
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/utils.d.ts",
+        "default": "./dist/esm/utils.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/utils.d.ts",
+        "default": "./dist/commonjs/utils.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/commonjs/utils.js",
+  "types": "./dist/commonjs/utils.d.ts",
+  "module": "./dist/esm/utils.js"
+}
