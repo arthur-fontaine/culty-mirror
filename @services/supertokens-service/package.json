@@ -1,5 +1,5 @@
 {
-  "name": "@culty/auth-service",
+  "name": "@culty/supertokens-service",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

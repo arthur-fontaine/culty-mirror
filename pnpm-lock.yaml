@@ -257,33 +257,6 @@ importers:
         specifier: ^3.0.1
         version: 3.0.1
 
-  '@services/auth-db': {}
-
-  '@services/auth-service':
-    dependencies:
-      '@culty/ts-utils':
-        specifier: workspace:*
-        version: link:../../@libs/ts-utils
-      '@fastify/cors':
-        specifier: ^10.0.1
-        version: 10.0.1
-      '@fastify/formbody':
-        specifier: ^8.0.1
-        version: 8.0.1
-      fastify:
-        specifier: ^5.0.0
-        version: 5.0.0
-      supertokens-node:
-        specifier: ^20.1.5
-        version: 20.1.5
-    devDependencies:
-      '@culty/tsconfig':
-        specifier: workspace:*
-        version: link:../../@libs/tsconfig
-      tsx:
-        specifier: ^4.19.1
-        version: 4.19.1
-
   '@services/media-db':
     dependencies:
       '@prisma/client':
@@ -371,6 +344,33 @@ importers:
       culty-media-typesense:
         specifier: workspace:@culty/media-typesense@*
         version: link:../media-typesense
+
+  '@services/supertokens-db': {}
+
+  '@services/supertokens-service':
+    dependencies:
+      '@culty/ts-utils':
+        specifier: workspace:*
+        version: link:../../@libs/ts-utils
+      '@fastify/cors':
+        specifier: ^10.0.1
+        version: 10.0.1
+      '@fastify/formbody':
+        specifier: ^8.0.1
+        version: 8.0.1
+      fastify:
+        specifier: ^5.0.0
+        version: 5.0.0
+      supertokens-node:
+        specifier: ^20.1.5
+        version: 20.1.5
+    devDependencies:
+      '@culty/tsconfig':
+        specifier: workspace:*
+        version: link:../../@libs/tsconfig
+      tsx:
+        specifier: ^4.19.1
+        version: 4.19.1
 
 packages:
 
@@ -11447,8 +11447,6 @@ snapshots:
       '@putout/operator-filesystem': 4.1.0(putout@36.6.0(eslint@9.11.1(jiti@2.3.1))(typescript@5.3.3))
       '@putout/operator-json': 2.2.0
       putout: 36.6.0(eslint@9.11.1(jiti@2.3.1))(typescript@5.3.3)
-    transitivePeerDependencies:
-      - supports-color
 
   '@putout/operator-regexp@1.0.0(putout@36.6.0(eslint@9.11.1(jiti@2.3.1))(typescript@5.3.3))':
     dependencies:

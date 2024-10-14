@@ -1,5 +1,5 @@
 {
-  "name": "@culty/auth-db",
+  "name": "@culty/supertokens-db",
   "version": "1.0.0",
   "scripts": {
     "start": "docker-compose up",
