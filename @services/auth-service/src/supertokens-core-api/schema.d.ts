@@ -4,7 +4,7 @@
  */
 
 export interface paths {
-    [path: `/appid-${string}/recipe/accountlinking/user/primary/check`]: {
+    "/appid-{appId}/recipe/accountlinking/user/primary/check": {
         parameters: {
             query?: never;
             header?: never;
@@ -22,7 +22,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/accountlinking/user/link/check`]: {
+    "/appid-{appId}/recipe/accountlinking/user/link/check": {
         parameters: {
             query?: never;
             header?: never;
@@ -40,7 +40,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/accountlinking/user/primary`]: {
+    "/appid-{appId}/recipe/accountlinking/user/primary": {
         parameters: {
             query?: never;
             header?: never;
@@ -58,7 +58,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/accountlinking/user/link`]: {
+    "/appid-{appId}/recipe/accountlinking/user/link": {
         parameters: {
             query?: never;
             header?: never;
@@ -76,7 +76,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/accountlinking/user/unlink`]: {
+    "/appid-{appId}/recipe/accountlinking/user/unlink": {
         parameters: {
             query?: never;
             header?: never;
@@ -94,7 +94,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/totp/device`]: {
+    "/appid-{appId}/recipe/totp/device": {
         parameters: {
             query?: never;
             header?: never;
@@ -114,7 +114,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/totp/device/list`]: {
+    "/appid-{appId}/recipe/totp/device/list": {
         parameters: {
             query?: never;
             header?: never;
@@ -150,7 +150,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/totp/device/remove`]: {
+    "/appid-{appId}/recipe/totp/device/remove": {
         parameters: {
             query?: never;
             header?: never;
@@ -168,7 +168,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/totp/verify`]: {
+    "/appid-{appId}/{tenantId}/recipe/totp/verify": {
         parameters: {
             query?: never;
             header?: never;
@@ -186,7 +186,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/totp/device/verify`]: {
+    "/appid-{appId}/{tenantId}/recipe/totp/device/verify": {
         parameters: {
             query?: never;
             header?: never;
@@ -204,7 +204,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/userid/map`]: {
+    "/appid-{appId}/recipe/userid/map": {
         parameters: {
             query?: never;
             header?: never;
@@ -224,7 +224,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/userid/map/remove`]: {
+    "/appid-{appId}/recipe/userid/map/remove": {
         parameters: {
             query?: never;
             header?: never;
@@ -242,7 +242,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/userid/external-user-id-info`]: {
+    "/appid-{appId}/recipe/userid/external-user-id-info": {
         parameters: {
             query?: never;
             header?: never;
@@ -260,7 +260,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/signinup/code/check`]: {
+    "/appid-{appId}/{tenantId}/recipe/signinup/code/check": {
         parameters: {
             query?: never;
             header?: never;
@@ -278,7 +278,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/signinup/code/consume`]: {
+    "/appid-{appId}/{tenantId}/recipe/signinup/code/consume": {
         parameters: {
             query?: never;
             header?: never;
@@ -296,7 +296,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/signinup/code`]: {
+    "/appid-{appId}/{tenantId}/recipe/signinup/code": {
         parameters: {
             query?: never;
             header?: never;
@@ -315,7 +315,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/signinup/code/remove`]: {
+    "/appid-{appId}/{tenantId}/recipe/signinup/code/remove": {
         parameters: {
             query?: never;
             header?: never;
@@ -333,7 +333,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/signinup/codes`]: {
+    "/appid-{appId}/{tenantId}/recipe/signinup/codes": {
         parameters: {
             query?: never;
             header?: never;
@@ -351,7 +351,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/signinup/codes/remove`]: {
+    "/appid-{appId}/{tenantId}/recipe/signinup/codes/remove": {
         parameters: {
             query?: never;
             header?: never;
@@ -369,7 +369,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/user⠀⠀`]: {
+    "/appid-{appId}/{tenantId}/recipe/user\u2800\u2800": {
         parameters: {
             query?: never;
             header?: never;
@@ -388,7 +388,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/signin`]: {
+    "/appid-{appId}/{tenantId}/recipe/signin": {
         parameters: {
             query?: never;
             header?: never;
@@ -406,7 +406,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/signup`]: {
+    "/appid-{appId}/{tenantId}/recipe/signup": {
         parameters: {
             query?: never;
             header?: never;
@@ -424,7 +424,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/user`]: {
+    "/appid-{appId}/{tenantId}/recipe/user": {
         parameters: {
             query?: never;
             header?: never;
@@ -442,7 +442,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/user/password/reset/token`]: {
+    "/appid-{appId}/{tenantId}/recipe/user/password/reset/token": {
         parameters: {
             query?: never;
             header?: never;
@@ -460,7 +460,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/user/password/reset`]: {
+    "/appid-{appId}/{tenantId}/recipe/user/password/reset": {
         parameters: {
             query?: never;
             header?: never;
@@ -476,7 +476,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/user/passwordhash/import`]: {
+    "/appid-{appId}/{tenantId}/recipe/user/passwordhash/import": {
         parameters: {
             query?: never;
             header?: never;
@@ -494,7 +494,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/user/password/reset/token/consume`]: {
+    "/appid-{appId}/{tenantId}/recipe/user/password/reset/token/consume": {
         parameters: {
             query?: never;
             header?: never;
@@ -512,7 +512,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/signinup`]: {
+    "/appid-{appId}/{tenantId}/recipe/signinup": {
         parameters: {
             query?: never;
             header?: never;
@@ -530,7 +530,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/user⠀`]: {
+    "/appid-{appId}/{tenantId}/recipe/user\u2800": {
         parameters: {
             query?: never;
             header?: never;
@@ -546,7 +546,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/users/by-email`]: {
+    "/appid-{appId}/{tenantId}/recipe/users/by-email": {
         parameters: {
             query?: never;
             header?: never;
@@ -562,7 +562,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/user/email/verify/token`]: {
+    "/appid-{appId}/{tenantId}/recipe/user/email/verify/token": {
         parameters: {
             query?: never;
             header?: never;
@@ -580,7 +580,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/user/email/verify/token/remove`]: {
+    "/appid-{appId}/{tenantId}/recipe/user/email/verify/token/remove": {
         parameters: {
             query?: never;
             header?: never;
@@ -598,7 +598,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/user/email/verify`]: {
+    "/appid-{appId}/{tenantId}/recipe/user/email/verify": {
         parameters: {
             query?: never;
             header?: never;
@@ -616,7 +616,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/user/email/verify`]: {
+    "/appid-{appId}/recipe/user/email/verify": {
         parameters: {
             query?: never;
             header?: never;
@@ -634,7 +634,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/user/email/verify/remove`]: {
+    "/appid-{appId}/recipe/user/email/verify/remove": {
         parameters: {
             query?: never;
             header?: never;
@@ -652,7 +652,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/user/metadata`]: {
+    "/appid-{appId}/recipe/user/metadata": {
         parameters: {
             query?: never;
             header?: never;
@@ -680,7 +680,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/user/metadata/remove`]: {
+    "/appid-{appId}/recipe/user/metadata/remove": {
         parameters: {
             query?: never;
             header?: never;
@@ -698,7 +698,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/user/role`]: {
+    "/appid-{appId}/{tenantId}/recipe/user/role": {
         parameters: {
             query?: never;
             header?: never;
@@ -716,7 +716,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/user/role/remove`]: {
+    "/appid-{appId}/{tenantId}/recipe/user/role/remove": {
         parameters: {
             query?: never;
             header?: never;
@@ -734,7 +734,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/user/roles`]: {
+    "/appid-{appId}/{tenantId}/recipe/user/roles": {
         parameters: {
             query?: never;
             header?: never;
@@ -752,7 +752,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/role/users`]: {
+    "/appid-{appId}/{tenantId}/recipe/role/users": {
         parameters: {
             query?: never;
             header?: never;
@@ -770,7 +770,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/role`]: {
+    "/appid-{appId}/recipe/role": {
         parameters: {
             query?: never;
             header?: never;
@@ -788,7 +788,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/role/permissions`]: {
+    "/appid-{appId}/recipe/role/permissions": {
         parameters: {
             query?: never;
             header?: never;
@@ -806,7 +806,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/role/permissions/remove`]: {
+    "/appid-{appId}/recipe/role/permissions/remove": {
         parameters: {
             query?: never;
             header?: never;
@@ -824,7 +824,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/permission/roles`]: {
+    "/appid-{appId}/recipe/permission/roles": {
         parameters: {
             query?: never;
             header?: never;
@@ -842,7 +842,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/role/remove`]: {
+    "/appid-{appId}/recipe/role/remove": {
         parameters: {
             query?: never;
             header?: never;
@@ -860,7 +860,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/roles`]: {
+    "/appid-{appId}/recipe/roles": {
         parameters: {
             query?: never;
             header?: never;
@@ -878,7 +878,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/session`]: {
+    "/appid-{appId}/{tenantId}/recipe/session": {
         parameters: {
             query?: never;
             header?: never;
@@ -896,7 +896,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/session`]: {
+    "/appid-{appId}/recipe/session": {
         parameters: {
             query?: never;
             header?: never;
@@ -914,7 +914,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/session/remove`]: {
+    "/appid-{appId}/{tenantId}/recipe/session/remove": {
         parameters: {
             query?: never;
             header?: never;
@@ -936,7 +936,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/session/verify`]: {
+    "/appid-{appId}/recipe/session/verify": {
         parameters: {
             query?: never;
             header?: never;
@@ -954,7 +954,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/session/refresh`]: {
+    "/appid-{appId}/recipe/session/refresh": {
         parameters: {
             query?: never;
             header?: never;
@@ -972,7 +972,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/session/user`]: {
+    "/appid-{appId}/{tenantId}/recipe/session/user": {
         parameters: {
             query?: never;
             header?: never;
@@ -994,7 +994,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/session/regenerate`]: {
+    "/appid-{appId}/recipe/session/regenerate": {
         parameters: {
             query?: never;
             header?: never;
@@ -1012,7 +1012,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/session/data`]: {
+    "/appid-{appId}/recipe/session/data": {
         parameters: {
             query?: never;
             header?: never;
@@ -1030,7 +1030,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/jwt`]: {
+    "/appid-{appId}/recipe/jwt": {
         parameters: {
             query?: never;
             header?: never;
@@ -1048,7 +1048,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/jwt/jwks`]: {
+    "/appid-{appId}/recipe/jwt/jwks": {
         parameters: {
             query?: never;
             header?: never;
@@ -1064,7 +1064,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/.well-known/jwks.json`]: {
+    "/appid-{appId}/.well-known/jwks.json": {
         parameters: {
             query?: never;
             header?: never;
@@ -1128,7 +1128,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/jwt/data`]: {
+    "/appid-{appId}/{tenantId}/recipe/jwt/data": {
         parameters: {
             query?: never;
             header?: never;
@@ -1146,7 +1146,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/dashboard/user`]: {
+    "/appid-{appId}/recipe/dashboard/user": {
         parameters: {
             query?: never;
             header?: never;
@@ -1168,7 +1168,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/dashboard/users`]: {
+    "/appid-{appId}/recipe/dashboard/users": {
         parameters: {
             query?: never;
             header?: never;
@@ -1186,7 +1186,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/dashboard/session/verify`]: {
+    "/appid-{appId}/recipe/dashboard/session/verify": {
         parameters: {
             query?: never;
             header?: never;
@@ -1204,7 +1204,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/dashboard/session`]: {
+    "/appid-{appId}/recipe/dashboard/session": {
         parameters: {
             query?: never;
             header?: never;
@@ -1222,7 +1222,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/dashboard/signin`]: {
+    "/appid-{appId}/recipe/dashboard/signin": {
         parameters: {
             query?: never;
             header?: never;
@@ -1240,7 +1240,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/dashboard/user/sessions`]: {
+    "/appid-{appId}/recipe/dashboard/user/sessions": {
         parameters: {
             query?: never;
             header?: never;
@@ -1258,7 +1258,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/apiversion`]: {
+    "/appid-{appId}/apiversion": {
         parameters: {
             query?: never;
             header?: never;
@@ -1294,7 +1294,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/`]: {
+    "/appid-{appId}/{tenantId}/": {
         parameters: {
             query?: never;
             header?: never;
@@ -1312,7 +1312,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/hello`]: {
+    "/appid-{appId}/{tenantId}/hello": {
         parameters: {
             query?: never;
             header?: never;
@@ -1336,7 +1336,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/telemetry`]: {
+    "/appid-{appId}/telemetry": {
         parameters: {
             query?: never;
             header?: never;
@@ -1354,7 +1354,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/users/count`]: {
+    "/appid-{appId}/{tenantId}/users/count": {
         parameters: {
             query?: never;
             header?: never;
@@ -1375,7 +1375,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/users/count/active`]: {
+    "/appid-{appId}/users/count/active": {
         parameters: {
             query?: never;
             header?: never;
@@ -1393,7 +1393,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/users`]: {
+    "/appid-{appId}/{tenantId}/users": {
         parameters: {
             query?: never;
             header?: never;
@@ -1411,7 +1411,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/user/remove`]: {
+    "/appid-{appId}/user/remove": {
         parameters: {
             query?: never;
             header?: never;
@@ -1429,7 +1429,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/user/search/tags`]: {
+    "/appid-{appId}/user/search/tags": {
         parameters: {
             query?: never;
             header?: never;
@@ -1447,7 +1447,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/ee/featureflag`]: {
+    "/appid-{appId}/ee/featureflag": {
         parameters: {
             query?: never;
             header?: never;
@@ -1465,7 +1465,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/ee/license`]: {
+    "/appid-{appId}/ee/license": {
         parameters: {
             query?: never;
             header?: never;
@@ -1487,7 +1487,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/user/id`]: {
+    "/appid-{appId}/user/id": {
         parameters: {
             query?: never;
             header?: never;
@@ -1505,7 +1505,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/users/by-accountinfo`]: {
+    "/appid-{appId}/{tenantId}/users/by-accountinfo": {
         parameters: {
             query?: never;
             header?: never;
@@ -1523,7 +1523,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/requests/stats`]: {
+    "/appid-{appId}/requests/stats": {
         parameters: {
             query?: never;
             header?: never;
@@ -1831,7 +1831,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/multitenancy/tenant`]: {
+    "/appid-{appId}/recipe/multitenancy/tenant": {
         parameters: {
             query?: never;
             header?: never;
@@ -1847,7 +1847,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/multitenancy/tenant/v2`]: {
+    "/appid-{appId}/recipe/multitenancy/tenant/v2": {
         parameters: {
             query?: never;
             header?: never;
@@ -1908,7 +1908,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/multitenancy/tenant`]: {
+    "/appid-{appId}/{tenantId}/recipe/multitenancy/tenant": {
         parameters: {
             query?: never;
             header?: never;
@@ -1924,7 +1924,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/multitenancy/tenant/v2`]: {
+    "/appid-{appId}/{tenantId}/recipe/multitenancy/tenant/v2": {
         parameters: {
             query?: never;
             header?: never;
@@ -1951,7 +1951,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/dashboard/tenant/core-config`]: {
+    "/appid-{appId}/{tenantId}/recipe/dashboard/tenant/core-config": {
         parameters: {
             query?: never;
             header?: never;
@@ -1969,7 +1969,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/multitenancy/tenant/remove`]: {
+    "/appid-{appId}/recipe/multitenancy/tenant/remove": {
         parameters: {
             query?: never;
             header?: never;
@@ -1989,7 +1989,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/multitenancy/tenant/list`]: {
+    "/appid-{appId}/recipe/multitenancy/tenant/list": {
         parameters: {
             query?: never;
             header?: never;
@@ -2005,7 +2005,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/recipe/multitenancy/tenant/list/v2`]: {
+    "/appid-{appId}/recipe/multitenancy/tenant/list/v2": {
         parameters: {
             query?: never;
             header?: never;
@@ -2030,7 +2030,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/multitenancy/config/thirdparty`]: {
+    "/appid-{appId}/{tenantId}/recipe/multitenancy/config/thirdparty": {
         parameters: {
             query?: never;
             header?: never;
@@ -2086,7 +2086,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/multitenancy/config/thirdparty/remove`]: {
+    "/appid-{appId}/{tenantId}/recipe/multitenancy/config/thirdparty/remove": {
         parameters: {
             query?: never;
             header?: never;
@@ -2104,7 +2104,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/multitenancy/tenant/user`]: {
+    "/appid-{appId}/{tenantId}/recipe/multitenancy/tenant/user": {
         parameters: {
             query?: never;
             header?: never;
@@ -2127,7 +2127,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    [path: `/appid-${string}/${string}/recipe/multitenancy/tenant/user/remove`]: {
+    "/appid-{appId}/{tenantId}/recipe/multitenancy/tenant/user/remove": {
         parameters: {
             query?: never;
             header?: never;

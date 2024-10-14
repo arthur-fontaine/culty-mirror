@@ -21,6 +21,7 @@
   "dependencies": {
     "@culty/tsconfig": "workspace:*",
     "conjure-client": "^2.11.0",
+    "@culty/auth-service": "workspace:*",
     "@culty/search-service": "workspace:*",
     "@culty/media-interactions-service": "workspace:*",
     "@culty/media-service": "workspace:*"

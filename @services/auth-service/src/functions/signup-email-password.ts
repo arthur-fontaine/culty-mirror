@@ -1,9 +1,15 @@
-import type { AuthService, IBadCredentials } from "../../types/typescript"
+import type { AuthService } from "../../types/typescript"
 import { supertokensCoreApi } from "../supertokens-core-api"
 import { loginEmailPassword } from "./login-email-password"
 
 export const signUpEmailPassword: AuthService["signUpEmailPassword"] = async (request) => {
-  const signupResponse = await supertokensCoreApi.POST('/appid-public/public/recipe/signup', {
+  const signupResponse = await supertokensCoreApi.POST('/appid-{appId}/{tenantId}/recipe/signup', {
+    params: {
+      path: {
+        appId: 'public',
+        tenantId: 'public',
+      } as never,
+    },
     body: {
       email: request.email,
       password: request.password,

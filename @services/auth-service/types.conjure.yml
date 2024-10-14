@@ -13,10 +13,31 @@ types:
           email: string
           password: string
 
+      RefreshTokenRequest:
+        fields:
+          refreshToken: string
+          antiCsrfToken: string
+
+      Token:
+        fields:
+          token: string
+          expiresAt: integer
+
       LoginResponse:
         fields:
           userId: string
-          userToken: string
+          accessToken: Token
+          refreshToken: Token
+          antiCsrfToken: string
+
+      VerifyAccessTokenRequest:
+        fields:
+          accessToken: string
+          antiCsrfToken: string
+
+      VerifyAccessTokenResponse:
+        fields:
+          userId: string
 
     errors:
       BadCredentials:
@@ -39,3 +60,15 @@ services:
         args:
           request: SignUpEmailPasswordRequest
         returns: LoginResponse
+
+      refreshToken:
+        http: POST /refreshToken
+        args:
+          request: RefreshTokenRequest
+        returns: LoginResponse
+
+      verifyAccessToken:
+        http: POST /verifyAccessToken
+        args:
+          request: VerifyAccessTokenRequest
+        returns: VerifyAccessTokenResponse

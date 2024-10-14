@@ -9,7 +9,13 @@ const createBadCredentialsError = (errorInstanceId: string) => new Error(JSON.st
 } satisfies IBadCredentials))
 
 export const loginEmailPassword: AuthService["loginEmailPassword"] = async (request) => {
-  const signinResponse = await supertokensCoreApi.POST('/appid-public/public/recipe/signin', {
+  const signinResponse = await supertokensCoreApi.POST('/appid-{appId}/{tenantId}/recipe/signin', {
+    params: {
+      path: {
+        appId: 'public',
+        tenantId: 'public',
+      } as never,
+    },
     body: {
       email: request.email,
       password: request.password,
@@ -22,19 +28,36 @@ export const loginEmailPassword: AuthService["loginEmailPassword"] = async (requ
 
   const userId = signinResponse.data.user.id
 
-  const jwtResponse = await supertokensCoreApi.POST('/appid-public/recipe/jwt', {
+  const sessionResponse = await supertokensCoreApi.POST('/appid-{appId}/{tenantId}/recipe/session', {
+    params: {
+      path: {
+        appId: 'public',
+        tenantId: 'public',
+      } as never,
+    },
     body: {
-      payload: { userId } as never,
-      algorithm: 'RS256' as const,
-      jwksDomain: 'http://', // TODO
-      useStaticSigningKey: true,
-      validity: 3600, // TODO
+      enableAntiCsrf: true,
+      useDynamicSigningKey: true,
+      userId,
+      userDataInDatabase: {},
+      userDataInJWT: {},
     },
   })
 
-  if (jwtResponse.data?.status !== "OK") {
-    throw new Error("Failed to create JWT") // TODO: throw a more specific error
+  if (sessionResponse.data?.status !== "OK") {
+    throw new Error("Failed to create session") // TODO: throw a more specific error
   }
 
-  return { userId, userToken: jwtResponse.data.jwt }
+  return {
+    userId,
+    accessToken: {
+      token: sessionResponse.data.accessToken.token,
+      expiresAt: sessionResponse.data.accessToken.expiry,
+    },
+    refreshToken: {
+      token: sessionResponse.data.refreshToken.token,
+      expiresAt: sessionResponse.data.refreshToken.expiry,
+    },
+    antiCsrfToken: sessionResponse.data.antiCsrfToken,
+  }
 }

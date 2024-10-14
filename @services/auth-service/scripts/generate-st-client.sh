@@ -7,7 +7,6 @@ sed -i '' -E 's/<([^>]+)>/{\1}/g;t' "$ST_API_YAML_FILE"
 
 pnpx openapi-typescript "$ST_API_YAML_FILE" \
   --properties-required-by-default \
-  --path-params-as-types \
   --exclude-deprecated \
   --output ./src/supertokens-core-api/schema.d.ts
 
