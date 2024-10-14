@@ -1,0 +1,11 @@
+{
+  "name": "@culty/auth-db",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "docker-compose up",
+    "dev": "pnpm start",
+    "reset-db": "rm -rf postgres-data"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}

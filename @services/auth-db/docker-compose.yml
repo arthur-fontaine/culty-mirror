@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  db:
+    image: 'postgres:latest'
+    environment:
+      POSTGRES_USER: $SUPER_TOKENS_DB_USER
+      POSTGRES_PASSWORD: $SUPER_TOKENS_DB_PASSWORD
+      POSTGRES_DB: $SUPER_TOKENS_DB_NAME
+    ports:
+      - ${SUPER_TOKENS_DB_PORT}:5432
+    networks:
+      - app_network
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', '$SUPER_TOKENS_DB_USER', '-d', '$SUPER_TOKENS_DB_NAME']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  supertokens:
+    image: registry.supertokens.io/supertokens/supertokens-postgresql:9.2.3
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - ${SUPER_TOKENS_PORT}:3567
+    environment:
+      POSTGRESQL_CONNECTION_URI: "postgresql://$SUPER_TOKENS_DB_USER:$SUPER_TOKENS_DB_PASSWORD@db:5432/$SUPER_TOKENS_DB_NAME"
+    networks:
+      - app_network
+    restart: unless-stopped
+    healthcheck:
+      test: >
+        bash -c 'exec 3<>/dev/tcp/127.0.0.1/3567 && echo -e "GET /hello HTTP/1.1\r\nhost: 127.0.0.1:3567\r\nConnection: close\r\n\r\n" >&3 && cat <&3 | grep "Hello"'
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  app_network:
+    driver: bridge

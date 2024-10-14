@@ -17,7 +17,8 @@
     "postmigrate": "docker-compose down",
     "build": "pnpm generate",
     "start": "docker-compose up",
-    "dev": "pnpm start"
+    "dev": "pnpm start",
+    "reset-db": "rm -rf postgres-data"
   },
   "devDependencies": {
     "@culty/tsconfig": "workspace:*",
