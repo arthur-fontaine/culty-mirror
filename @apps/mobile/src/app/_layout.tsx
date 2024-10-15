@@ -6,9 +6,9 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { FiboSpacerProvider } from '../shared/components/group/fibo-spacer-provider';
-import { ThemeProvider, useTheme } from '../shared/theme/theme-context';
 import { AuthProvider } from '../shared/contexts/auth-context';
 import { useSession } from '../shared/hooks/use-session';
+import { ThemeProvider, useTheme } from '../shared/theme/theme-context';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();

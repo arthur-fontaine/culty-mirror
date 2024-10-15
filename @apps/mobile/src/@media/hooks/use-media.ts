@@ -2,14 +2,19 @@ import { mediaInteractionsService, mediaService } from "@culty/services";
 import { createRoute } from "agrume";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useSession } from "../../shared/hooks/use-session";
+import { withAuth } from "../../shared/utils/with-auth";
 
 export const useMedia = (mediaId: string) => {
-  const { userId } = useSession();
+  const { token } = useSession();
   const queryClient = useQueryClient();
+
+  if (token === undefined) {
+    return null;
+  }
 
   const interactRequestParams = {
     mediaId,
-    userId,
+    userToken: token,
   };
 
   const { data: media, isLoading: isMediaLoading } = useQuery({
@@ -25,7 +30,7 @@ export const useMedia = (mediaId: string) => {
 
   const { data: mediaInteractions, isLoading: isMediaInteractionsLoading } = useQuery({
     queryKey: QUERY_MEDIA_INTERACTIONS_KEY,
-    queryFn: () => createRoute(mediaInteractionsService.getInteractions)(interactRequestParams),
+    queryFn: () => createRoute(withAuth(mediaInteractionsService.getInteractions))(interactRequestParams),
   });
 
   const createMediaInteractOptimisticUpdateOptions =
@@ -53,43 +58,43 @@ export const useMedia = (mediaId: string) => {
 
   const { mutate: favorite } = useMutation({
     mutationKey: ["media", "favorite", interactRequestParams],
-    mutationFn: () => createRoute(mediaInteractionsService.favorite)(interactRequestParams),
+    mutationFn: () => createRoute(withAuth(mediaInteractionsService.favorite))(interactRequestParams),
     ...createMediaInteractOptimisticUpdateOptions(() => ({ favorited: true })),
   });
 
   const { mutate: unfavorite } = useMutation({
     mutationKey: ["media", "unfavorite", interactRequestParams],
-    mutationFn: () => createRoute(mediaInteractionsService.unfavorite)(interactRequestParams),
+    mutationFn: () => createRoute(withAuth(mediaInteractionsService.unfavorite))(interactRequestParams),
     ...createMediaInteractOptimisticUpdateOptions(() => ({ favorited: false })),
   });
 
   const { mutate: consume } = useMutation({
     mutationKey: ["media", "consume", interactRequestParams],
-    mutationFn: () => createRoute(mediaInteractionsService.consume)(interactRequestParams),
+    mutationFn: () => createRoute(withAuth(mediaInteractionsService.consume))(interactRequestParams),
     ...createMediaInteractOptimisticUpdateOptions(() => ({ consumed: true })),
   });
 
   const { mutate: unconsume } = useMutation({
     mutationKey: ["media", "unconsume", interactRequestParams],
-    mutationFn: () => createRoute(mediaInteractionsService.unconsume)(interactRequestParams),
+    mutationFn: () => createRoute(withAuth(mediaInteractionsService.unconsume))(interactRequestParams),
     ...createMediaInteractOptimisticUpdateOptions(() => ({ consumed: false })),
   });
 
   const { mutate: bookmark } = useMutation({
     mutationKey: ["media", "bookmark", interactRequestParams],
-    mutationFn: () => createRoute(mediaInteractionsService.bookmark)(interactRequestParams),
+    mutationFn: () => createRoute(withAuth(mediaInteractionsService.bookmark))(interactRequestParams),
     ...createMediaInteractOptimisticUpdateOptions(() => ({ bookmarked: true })),
   });
 
   const { mutate: unbookmark } = useMutation({
     mutationKey: ["media", "unbookmark", interactRequestParams],
-    mutationFn: () => createRoute(mediaInteractionsService.unbookmark)(interactRequestParams),
+    mutationFn: () => createRoute(withAuth(mediaInteractionsService.unbookmark))(interactRequestParams),
     ...createMediaInteractOptimisticUpdateOptions(() => ({ bookmarked: false })),
   });
 
   const { mutate: rate } = useMutation({
     mutationKey: ["media", "rate", interactRequestParams],
-    mutationFn: (rating?: number) => createRoute(mediaInteractionsService.rate)({
+    mutationFn: (rating?: number) => createRoute(withAuth(mediaInteractionsService.rate))({
       ...interactRequestParams,
       ...(rating !== undefined && { rating }),
     }),

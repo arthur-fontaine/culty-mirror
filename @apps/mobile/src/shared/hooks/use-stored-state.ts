@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { Store } from "../utils/store.d";
 
 export const useStoredState = <T>(
@@ -6,10 +6,10 @@ export const useStoredState = <T>(
   initialValue: T,
   store: Store,
   serializer: {
-    serialize: (value: T) => string;
+    serialize: (value: T) => string | undefined;
     deserialize: (value: string) => T;
   } = {
-      serialize: JSON.stringify,
+      serialize: (value) => value === undefined ? undefined : JSON.stringify(value),
       deserialize: JSON.parse,
     }
 ) => {
@@ -28,14 +28,18 @@ export const useStoredState = <T>(
   const setStoredState = useCallback(
     (value: T) => {
       setState(value);
-      store.setItem(key, serializer.serialize(value));
+      const serializedValue = serializer.serialize(value);
+      if (serializedValue === undefined) return;
+      store.setItem(key, serializedValue);
     },
     [key, store, serializer]
   );
 
   useEffect(() => {
     if (loading) return;
-    store.setItem(key, serializer.serialize(state));
+    const serializedValue = serializer.serialize(state);
+    if (serializedValue === undefined) return;
+    store.setItem(key, serializedValue);
   }, [key, store, state, loading, serializer]);
 
   return [state, setStoredState, loading] as const;

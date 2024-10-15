@@ -44,7 +44,16 @@ class ConjureServerBridge implements IHttpApiBridge {
     honoRegisterFn(parameters.endpointPath, async (c) => {
       const data = await c.req.json();
       const result = await parameters.data(data);
-      return c.text(this.encode(result, parameters.responseMediaType ?? MediaType.APPLICATION_JSON));
+
+      if (parameters.responseMediaType === MediaType.APPLICATION_JSON) {
+        return c.json(result);
+      }
+
+      if (parameters.responseMediaType === MediaType.TEXT_PLAIN) {
+        return c.text(result);
+      }
+
+      throw new Error(`Unexpected media type ${parameters.responseMediaType}`);
     })
 
     this.log(`Registered endpoint ${parameters.method} ${parameters.endpointPath}`);
@@ -118,19 +127,5 @@ class ConjureServerBridge implements IHttpApiBridge {
       return MediaType.TEXT_PLAIN;
     }
     throw new Error(`Unexpected media type ${value}`);
-  }
-
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  private encode(data: any, mediaType: MediaType): string {
-    if (mediaType === MediaType.APPLICATION_JSON) {
-      return JSON.stringify(data);
-    }
-    if (mediaType === MediaType.APPLICATION_X_WWW_FORM_URLENCODED) {
-      return new URLSearchParams(data).toString();
-    }
-    if (mediaType === MediaType.TEXT_PLAIN) {
-      return data;
-    }
-    throw new Error(`Unexpected media type ${mediaType}`);
   }
 }

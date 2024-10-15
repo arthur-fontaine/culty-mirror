@@ -8,4 +8,4 @@ import { createService } from "./create-service";
 export const searchService = createService(SearchService, 'SEARCH_SERVICE_PORT');
 export const mediaInteractionsService = createService(MediaInteractionsService, 'MEDIA_INTERACTIONS_SERVICE_PORT');
 export const mediaService = createService(MediaService, 'MEDIA_SERVICE_PORT');
-export const authService = createService(AuthService, 'AUTH_SERVICE_PORT');
+export const authService = createService(AuthService, 'AUTH_SERVICE_PORT', false);

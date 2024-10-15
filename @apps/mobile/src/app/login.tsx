@@ -1,2 +1,1 @@
-export default function LoginPage() {
-}
+export { LoginPage as default } from "../@login/login-page";

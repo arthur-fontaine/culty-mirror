@@ -8,6 +8,8 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
-    "vite.config.mts"
+    "vite.config.mts",
+    "dist/app/_layout.js",
+    "dist/app/authenticated/_layout.js"
   ]
 }

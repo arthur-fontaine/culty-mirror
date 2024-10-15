@@ -257,7 +257,7 @@ func main() {
 			time.Sleep(time.Duration(env.MEDIA_INTERACTIONS_DB_INIT_SLEEP) * time.Second)
 
 			if err := db.Connect(); err != nil {
-				log.Fatalln("Failed to connect to MongoDB", err)
+				log.Fatalln("Failed to connect to Postgres", err)
 			}
 
 			if err := mediainteractions.RegisterRoutesMediaInteractionsService(info.Router, &MediaInteractionsService{
