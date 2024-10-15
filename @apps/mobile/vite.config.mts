@@ -28,7 +28,11 @@ export default defineConfig({
           if (facadeModuleId === null) {
             return fileName;
           }
-          return path.relative("src", facadeModuleId).replace("[", "\\[").replace("]", "\\]").replace(/\.(t|j)sx?/, ".js");
+          const relative = path.relative("src", facadeModuleId).replace("[", "\\[").replace("]", "\\]").replace(/\.(t|j)sx?/, ".js");
+          if (relative.startsWith("..")) {
+            return fileName;
+          }
+          return relative;
         }
       },
       external: (_id, importer) => {

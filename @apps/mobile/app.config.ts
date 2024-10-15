@@ -1,4 +1,4 @@
-import type { ExpoConfig, ConfigContext } from 'expo/config';
+import type { ConfigContext, ExpoConfig } from 'expo/config';
 
 export default (_: ConfigContext): ExpoConfig => ({
   name: "culty",
@@ -27,7 +27,10 @@ export default (_: ConfigContext): ExpoConfig => ({
     output: "static",
     favicon: "./dist/assets/images/favicon.png",
   },
-  plugins: [["expo-router", { root: "./dist/app" }]],
+  plugins: [
+    ["expo-router", { root: "./dist/app" }],
+    "expo-secure-store",
+  ],
   experiments: {
     typedRoutes: true,
   },

@@ -7,6 +7,8 @@ import 'react-native-reanimated';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { FiboSpacerProvider } from '../shared/components/group/fibo-spacer-provider';
 import { ThemeProvider, useTheme } from '../shared/theme/theme-context';
+import { AuthProvider } from '../shared/contexts/auth-context';
+import { useSession } from '../shared/hooks/use-session';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -18,9 +20,11 @@ export default function RootLayout() {
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
         <FiboSpacerProvider startAtNthValue={9}>
-          <WaitLoading>
-            <Slot />
-          </WaitLoading>
+          <AuthProvider>
+            <WaitLoading>
+              <Slot />
+            </WaitLoading>
+          </AuthProvider>
         </FiboSpacerProvider>
       </QueryClientProvider>
     </ThemeProvider>
@@ -30,10 +34,12 @@ export default function RootLayout() {
 const WaitLoading = ({ children }: React.PropsWithChildren) => {
   const [fontsLoaded] = useFonts({});
   const { colorScheme } = useTheme();
+  const { isLoading } = useSession();
 
   const loaded = true
     && fontsLoaded
-    && colorScheme !== undefined;
+    && colorScheme !== undefined
+    && isLoading === false;
 
   useEffect(() => {
     if (loaded) {

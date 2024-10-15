@@ -1,6 +1,6 @@
 import { useLocalSearchParams } from "expo-router";
 import { Text } from "react-native";
-import { MediaPage } from "../../@media/media-page";
+import { MediaPage } from "../../../@media/media-page";
 
 export default () => {
   const local = useLocalSearchParams();

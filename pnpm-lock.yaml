@@ -37,6 +37,9 @@ importers:
       '@expo/vector-icons':
         specifier: ^14.0.2
         version: 14.0.3
+      '@react-native-async-storage/async-storage':
+        specifier: 1.23.1
+        version: 1.23.1(react-native@0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0))
       '@react-navigation/native':
         specifier: ^6.0.2
         version: 6.1.18(react-native@0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
@@ -67,6 +70,9 @@ importers:
       expo-router:
         specifier: ~3.5.23
         version: 3.5.23(boskdmiflijtk4cfmf5qukrum4)
+      expo-secure-store:
+        specifier: ~13.0.2
+        version: 13.0.2(expo@51.0.32(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2)))
       expo-splash-screen:
         specifier: ~0.27.5
         version: 0.27.5(expo-modules-autolinking@1.11.2)(expo@51.0.32(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2)))
@@ -3161,6 +3167,11 @@ packages:
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
 
+  '@react-native-async-storage/async-storage@1.23.1':
+    resolution: {integrity: sha512-Qd2kQ3yi6Y3+AcUlrHxSLlnBvpdCEMVGFlVBneVOjaFaPU61g1huc38g339ysXspwY1QZA2aNhrk/KlHGO+ewA==}
+    peerDependencies:
+      react-native: ^0.0.0-0 || >=0.60 <1.0
+
   '@react-native-community/cli-clean@13.6.9':
     resolution: {integrity: sha512-7Dj5+4p9JggxuVNOjPbduZBAP1SUgNhLKVw5noBUzT/3ZpUZkDM+RCSwyoyg8xKWoE4OrdUAXwAFlMcFDPKykA==}
 
@@ -4979,6 +4990,11 @@ packages:
       react-native-reanimated:
         optional: true
 
+  expo-secure-store@13.0.2:
+    resolution: {integrity: sha512-3QYgoneo8p8yeeBPBiAfokNNc2xq6+n8+Ob4fAlErEcf4H7Y72LH+K/dx0nQyWau2ZKZUXBxyyfuHFyVKrEVLg==}
+    peerDependencies:
+      expo: '*'
+
   expo-splash-screen@0.27.5:
     resolution: {integrity: sha512-9rdZuLkFCfgJBxrheUsOEOIW6Rp+9NVlpSE0hgXQwbTCLTncf00IHSE8/L2NbFyeDLNjof1yZBppaV7tXHRUzA==}
     peerDependencies:
@@ -5714,6 +5730,10 @@ packages:
     resolution: {integrity: sha512-Fd4gABb+ycGAmKou8eMftCupSir5lRxqf4aD/vd0cD2qc4HL07OjCeuHMr8Ro4CoMaeCKDB0/ECBOVWjTwUvPQ==}
     engines: {node: '>=8'}
 
+  is-plain-obj@2.1.0:
+    resolution: {integrity: sha512-YWnfyRwxL/+SsrWYfOpUtz5b3YD+nyfkHvjbcanzk8zgyO4ASD67uVMRt8k5bM4lLMDnXfriRhOpemw+NfT1eA==}
+    engines: {node: '>=8'}
+
   is-plain-obj@4.1.0:
     resolution: {integrity: sha512-+Pgi+vMuUNkJyExiMBt5IlFoMyKnr5zhJ4Uspz58WOhBF5QoIZkFyNHIbBAtHwzVAgk5RtndVNsDRN61/mmDqg==}
     engines: {node: '>=12'}
@@ -6374,6 +6394,10 @@ packages:
 
   merge-descriptors@1.0.3:
     resolution: {integrity: sha512-gaNvAS7TZ897/rVaZ0nMtAyxNyi/pdbjbAwUpFQpN70GqnVfOiXpeUUMKRBmzXaSQ8DdTX4/0ms62r2K+hE6mQ==}
+
+  merge-options@3.0.4:
+    resolution: {integrity: sha512-2Sug1+knBjkaMsMgf1ctR1Ujx+Ayku4EdJN4Z+C2+JzoeF7A3OZ9KM2GY0CpQS51NR61LTurMJrRKPhSs3ZRTQ==}
+    engines: {node: '>=10'}
 
   merge-stream@2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
@@ -11961,6 +11985,11 @@ snapshots:
       '@radix-ui/react-compose-refs': 1.0.0(react@18.2.0)
       react: 18.2.0
 
+  '@react-native-async-storage/async-storage@1.23.1(react-native@0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0))':
+    dependencies:
+      merge-options: 3.0.4
+      react-native: 0.74.5(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.2.79)(react@18.2.0)
+
   '@react-native-community/cli-clean@13.6.9':
     dependencies:
       '@react-native-community/cli-tools': 13.6.9
@@ -14307,6 +14336,10 @@ snapshots:
       - supports-color
       - typescript
 
+  expo-secure-store@13.0.2(expo@51.0.32(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))):
+    dependencies:
+      expo: 51.0.32(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))
+
   expo-splash-screen@0.27.5(expo-modules-autolinking@1.11.2)(expo@51.0.32(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))):
     dependencies:
       '@expo/prebuild-config': 7.0.6(expo-modules-autolinking@1.11.2)
@@ -15171,6 +15204,8 @@ snapshots:
   is-path-cwd@2.2.0: {}
 
   is-path-inside@3.0.3: {}
+
+  is-plain-obj@2.1.0: {}
 
   is-plain-obj@4.1.0: {}
 
@@ -16112,6 +16147,10 @@ snapshots:
   meow@13.2.0: {}
 
   merge-descriptors@1.0.3: {}
+
+  merge-options@3.0.4:
+    dependencies:
+      is-plain-obj: 2.1.0
 
   merge-stream@2.0.0: {}
 

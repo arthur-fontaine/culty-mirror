@@ -19,6 +19,7 @@
   "dependencies": {
     "@culty/services": "workspace:*",
     "@expo/vector-icons": "^14.0.2",
+    "@react-native-async-storage/async-storage": "1.23.1",
     "@react-navigation/native": "^6.0.2",
     "@uidotdev/usehooks": "^2.4.1",
     "agrume": "^3.1.0",
@@ -29,6 +30,7 @@
     "expo-linear-gradient": "~13.0.2",
     "expo-linking": "~6.3.1",
     "expo-router": "~3.5.23",
+    "expo-secure-store": "~13.0.2",
     "expo-splash-screen": "~0.27.5",
     "expo-status-bar": "~1.12.1",
     "expo-system-ui": "~3.0.7",
